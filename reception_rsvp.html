@@ -28,3 +28,31 @@
         <button type="submit" style="background: #0b2e33; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-family: 'Playfair Display', serif;">Submit</button>
     </form>
 </div>
+
+<script>
+    // RSVP Form Functions
+    function openRsvpForm() {
+        const form = document.getElementById('rsvp-form');
+        if (form) form.style.display = 'block';
+    }
+
+    function closeRsvpForm() {
+        const form = document.getElementById('rsvp-form');
+        if (form) form.style.display = 'none';
+    }
+
+    function submitRsvp(event) {
+        event.preventDefault();
+        const name = document.getElementById('name')?.value || 'Unknown';
+        const plusOne = document.getElementById('plus-one')?.value || 'No';
+        const phone = document.getElementById('phone')?.value || 'N/A';
+        const diet = document.getElementById('diet')?.value || 'None';
+
+        alert(`Thank you, ${name}!
+        RSVP confirmed.
+        Plus One: ${plusOne}
+        Phone: ${phone}
+        Dietary Restrictions: ${diet}`);
+        closeRsvpForm();
+    }
+</script>
