@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charlie & Jieying</title>
+    <title>Charlie & Jane Wedding Invitation</title>
     <style>
         /* General Styles */
         body {
@@ -58,6 +58,25 @@
             padding: 1rem;
         }
 
+        .return-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .return-button:hover {
+            background: #0056b3;
+        }
+
         nav {
             display: flex;
             justify-content: center;
@@ -90,63 +109,22 @@
         .tab-content.active {
             display: block;
         }
-
-        /* Reception Content */
-        #reception {
-            text-align: left;
-            margin: 0 auto;
-            max-width: 600px;
-        }
-
-        #reception ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #reception ul li {
-            margin: 0.5rem 0;
-        }
-
-        /* Album Content */
-        #album {
-            padding: 1rem;
-        }
-
-        #album p {
-            font-style: italic;
-        }
-
-        /* Gift List Content */
-        #gift-list ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #gift-list ul li {
-            margin: 0.5rem 0;
-        }
-
-        #gift-list a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        #gift-list a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
 
 <!-- Welcome Page -->
 <div id="welcome">
-    <h1>Charlie & Jieying</h1>
+    <h1>Charlie & Jane</h1>
     <p>1.11.2025</p>
     <button onclick="showMainPage()">RSVP</button>
 </div>
 
 <!-- Main Page -->
 <div id="main-page">
+    <!-- Return Button -->
+    <a class="return-button" href="#" onclick="returnToWelcome()">Return</a>
+    
     <nav>
         <button class="active" onclick="showTab('reception')">Reception</button>
         <button onclick="showTab('album')">Album</button>
@@ -183,6 +161,11 @@
     function showMainPage() {
         document.getElementById('welcome').style.display = 'none';
         document.getElementById('main-page').style.display = 'block';
+    }
+
+    function returnToWelcome() {
+        document.getElementById('main-page').style.display = 'none';
+        document.getElementById('welcome').style.display = 'flex';
     }
 
     function showTab(tabId) {
