@@ -16,3 +16,28 @@
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
 </div>
+
+
+<script>
+    // Function to load external HTML sections
+    function loadSection(sectionId, fileName) {
+        fetch(fileName)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${fileName}: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById(sectionId).innerHTML = data;
+            })
+            .catch(error => console.error('Error loading section:', error));
+    }
+
+    // Load sections after DOM content is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        loadSection('reception-info-section', 'reception_info.html');
+        loadSection('reception-rsvp-section', 'reception_rsvp.html');
+        loadSection('reception-menu-section', 'reception_menu.html');
+    });
+</script>
