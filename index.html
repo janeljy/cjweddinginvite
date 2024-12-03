@@ -16,12 +16,42 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif; /* Elegant headers */
+            font-family: 'Playfair Display', serif; /* headers */
             margin: 0;
         }
 
         p, label {
             font-family: 'Merriweather', serif; /* Supporting text font */
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+            background: #4f7c82;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        nav button {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            border: none;
+            background: none;
+            color: white;
+            cursor: pointer;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            transition: background 0.3s ease;
+        }
+
+        nav button:hover {
+            background: #93b1b5;
+        }
+
+        nav button.active {
+            background: #93b1b5;
+            border-radius: 5px;
         }
 
         ul {
@@ -166,9 +196,9 @@
         Album
     </button>
     <button id="gift-tab" 
-        onclick="loadTabContent('gift-tab', 'gift-list.html')" 
+        onclick="loadTabContent('gift-tab', 'gift.html')" 
         style="font-family: 'Playfair Display', serif; font-size: 1rem; border: none; background: none; color: #0b2e33; cursor: pointer; margin: 0 1rem; padding: 0.5rem 1rem; transition: background 0.3s ease;">
-        Gift List
+        Wish List
     </button>
     </nav>
     <hr style="border: 0; margin: 0 auto; max-width: 90%;">
@@ -185,17 +215,31 @@
         document.getElementById('welcome').style.display = 'flex';
     }
 
-    function showTab(tabId) {
-        // Remove active class from all tabs
-        const tabs = document.querySelectorAll('.tab-content');
-        const buttons = document.querySelectorAll('nav button');
-        tabs.forEach(tab => tab.classList.remove('active'));
-        buttons.forEach(button => button.classList.remove('active'));
+    // Function to load sections dynamically
+        function loadTabContent(tabId, fileName) {
+            fetch(fileName)
+                .then(response => {
+                    if (!response.ok) throw new Error(`Failed to load ${fileName}: ${response.status}`);
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('content-section').innerHTML = data;
+                    setActiveTab(tabId);
+                })
+                .catch(error => console.error('Error loading section:', error));
+        }
 
-        // Show selected tab and highlight button
-        document.getElementById(tabId).classList.add('active');
-        document.querySelector(`nav button[onclick="showTab('${tabId}')"]`).classList.add('active');
-    }
+        // Function to set the active tab
+        function setActiveTab(activeTabId) {
+            const tabs = document.querySelectorAll('nav button');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(activeTabId).classList.add('active');
+        }
+
+        // Load default tab on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTabContent('reception-tab', 'reception_info.html'); // Load Reception Info by default
+        });
 
 </script>
 
