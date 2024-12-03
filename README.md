@@ -1,1 +1,1 @@
-# CJWeddingInvitation.github.io
+# cjweddinginvitation
