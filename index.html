@@ -189,6 +189,10 @@
         // Show selected tab and highlight button
         document.getElementById(tabId).classList.add('active');
         document.querySelector(`nav button[onclick="showTab('${tabId}')"]`).classList.add('active');
+
+        if (tabId === 'reception-tab') {
+            loadReceptionContent();
+        }
     }
 
     // Dynamically load content into each tab from external files
@@ -209,6 +213,38 @@
         loadTabContent('reception-tab', 'reception.html');
         loadTabContent('album-tab', 'album.html');
         loadTabContent('gift-tab', 'gift.html');
+    });
+
+    function loadReceptionContent() {
+        fetch('reception.html')
+            .then(response => {
+                if (!response.ok) throw new Error(`Failed to load reception.html: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('reception-tab').innerHTML = data;
+                loadSection('reception-info-section', 'reception_info.html');
+                loadSection('reception-rsvp-section', 'reception_rsvp.html');
+                loadSection('reception-menu-section', 'reception_menu.html');
+            })
+            .catch(error => console.error('Error loading Reception content:', error));
+    }
+
+    // Function to dynamically load content into sections
+    function loadSection(sectionId, fileName) {
+        fetch(fileName)
+            .then(response => {
+                if (!response.ok) throw new Error(`Failed to load ${fileName}: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById(sectionId).innerHTML = data;
+            })
+            .catch(error => console.error(`Error loading section '${fileName}':`, error));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadReceptionContent();
     });
 </script>
 
