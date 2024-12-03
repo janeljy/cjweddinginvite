@@ -184,22 +184,11 @@
     <!-- Return Button -->
     <a class="return-button" href="#" onclick="returnToWelcome()">back</a>
     
-    <nav style="display: flex; justify-content: center; margin: 1rem 0; background: none; padding: 1rem; border-radius: 10px;">
-    <button id="reception-tab" 
-        onclick="loadTabContent('reception-tab', 'reception.html')" 
-        style="font-family: 'Playfair Display', serif; font-size: 1rem; border: none; background: none; color: #0b2e33; cursor: pointer; margin: 0 1rem; padding: 0.5rem 1rem; transition: background 0.3s ease;">
-        Reception
-    </button>
-    <button id="album-tab" 
-        onclick="loadTabContent('album-tab', 'album.html')" 
-        style="font-family: 'Playfair Display', serif; font-size: 1rem; border: none; background: none; color: #0b2e33; cursor: pointer; margin: 0 1rem; padding: 0.5rem 1rem; transition: background 0.3s ease;">
-        Album
-    </button>
-    <button id="gift-tab" 
-        onclick="loadTabContent('gift-tab', 'gift.html')" 
-        style="font-family: 'Playfair Display', serif; font-size: 1rem; border: none; background: none; color: #0b2e33; cursor: pointer; margin: 0 1rem; padding: 0.5rem 1rem; transition: background 0.3s ease;">
-        Wish List
-    </button>
+    <!-- Navigation Bar -->
+    <nav>
+        <button id="reception-tab" onclick="loadTabContent('reception-tab', 'reception.html')">Reception</button>
+        <button id="album-tab" onclick="loadTabContent('album-tab', 'album.html')">Album</button>
+        <button id="gift-tab" onclick="loadTabContent('gift-tab', 'gift.html')">Wish List</button>
     </nav>
     <hr style="border: 0; margin: 0 auto; max-width: 90%;">
 </div>
