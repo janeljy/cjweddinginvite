@@ -153,26 +153,19 @@
 <div id="main-page">
     <!-- Return Button -->
     <a class="return-button" href="#" onclick="returnToWelcome()">back</a>
-
+    <br>
     <nav>
-        <button class="active" onclick="showTab('reception')">Reception</button>
-        <button onclick="showTab('album')">Album</button>
-        <button onclick="showTab('gift-list')">Gift List</button>
+        <button class="active" onclick="showTab('reception-tab')">Reception</button>
+        <button onclick="showTab('album-tab')">Album</button>
+        <button onclick="showTab('gift-tab')">Wish List</button>
     </nav>
     <hr>
     
-    <div id="reception" class="tab-content active">
-        
+    <div id="reception-tab" class="tab-content active"></div>
 
-    </div>
+    <div id="album-tab" class="tab-content"></div>
 
-    
-    <div id="album" class="tab-content">
-    </div>
-
-    
-    <div id="gift-list" class="tab-content">
-    </div>
+    <div id="gift-tab" class="tab-content"></div>
 </div>
 
 <script>
@@ -197,6 +190,26 @@
         document.getElementById(tabId).classList.add('active');
         document.querySelector(`nav button[onclick="showTab('${tabId}')"]`).classList.add('active');
     }
+
+    // Dynamically load content into each tab from external files
+    function loadTabContent(tabId, fileName) {
+        fetch(fileName)
+            .then(response => {
+                if (!response.ok) throw new Error(`Failed to load ${fileName}: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById(tabId).innerHTML = data;
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+
+    // Load content for all tabs on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTabContent('reception-tab', 'reception.html');
+        loadTabContent('album-tab', 'album.html');
+        loadTabContent('gift-tab', 'gift.html');
+    });
 </script>
 
 </body>
