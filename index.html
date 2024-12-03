@@ -154,33 +154,24 @@
     <!-- Return Button -->
     <a class="return-button" href="#" onclick="returnToWelcome()">back</a>
     
-    <nav>
-        <button class="active" onclick="showTab('reception')">Reception</button>
-        <button onclick="showTab('album')">Album</button>
-        <button onclick="showTab('gift-list')">Gift List</button>
+    <nav style="display: flex; justify-content: center; margin: 1rem 0; background: #4f7c82; padding: 1rem; border-radius: 10px;">
+    <button id="reception-tab" 
+        onclick="loadTabContent('reception-tab', 'reception.html')" 
+        style="font-family: 'Playfair Display', serif; font-size: 1rem; border: none; background: none; color: white; cursor: pointer; margin: 0 1rem; padding: 0.5rem 1rem; transition: background 0.3s ease;">
+        Reception
+    </button>
+    <button id="album-tab" 
+        onclick="loadTabContent('album-tab', 'album.html')" 
+        style="font-family: 'Playfair Display', serif; font-size: 1rem; border: none; background: none; color: white; cursor: pointer; margin: 0 1rem; padding: 0.5rem 1rem; transition: background 0.3s ease;">
+        Album
+    </button>
+    <button id="gift-tab" 
+        onclick="loadTabContent('gift-tab', 'gift-list.html')" 
+        style="font-family: 'Playfair Display', serif; font-size: 1rem; border: none; background: none; color: white; cursor: pointer; margin: 0 1rem; padding: 0.5rem 1rem; transition: background 0.3s ease;">
+        Gift List
+    </button>
     </nav>
-    <div id="reception" class="tab-content active">
-        <br><!-- Reception Info in reception.html -->
-        <div id="reception-section"></div>
-
-        <br><!-- RSVP Section in rsvp.html -->
-        <div id="rsvp-section"></div>
-        
-        <br><!-- Menu in menu.html -->
-        <div id="menu-section"></div>
-    </div>
-    <div id="album" class="tab-content">
-        <h2>Album</h2>
-        <p>Check back after the reception for beautiful pictures to download!</p>
-    </div>
-    <div id="gift-list" class="tab-content">
-        <h2>Gift List</h2>
-        <ul>
-            <li><a href="https://www.amazon.com" target="_blank">Kitchen Mixer</a></li>
-            <li><a href="https://www.target.com" target="_blank">Home Decor</a></li>
-            <li><a href="https://www.wayfair.com" target="_blank">Dining Set</a></li>
-        </ul>
-    </div>
+    <hr style="border: 0; border-top: 4px solid #93b1b5; margin: 0 auto; max-width: 90%;">
 </div>
 
 <script>
