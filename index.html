@@ -24,6 +24,18 @@
             font-family: 'Merriweather', serif; /* Supporting text font */
         }
 
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin: 1rem auto;
+            max-width: 600px;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
         /* Welcome Page Styles */
         #welcome {
             display: flex;
@@ -48,12 +60,13 @@
 
         #welcome button {
             font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
+            font-size: 1.8rem; /* Adjusted size for 1.5x scale */
             color: #0b2e33;
             border: none;
             background: none;
             cursor: pointer;
             transition: color 0.3s ease;
+            padding: 1.5rem 2.5rem; /* Increased padding for a larger button */
         }
 
         #welcome button:hover {
@@ -133,8 +146,7 @@
 <div id="welcome">
     <h1>Charlie & Jieying</h1>
     <p>1.11.2025</p>
-    <button onclick="showMainPage()">RSVP
-    font-size: 20px</button>
+    <button onclick="showMainPage()">RSVP</button>
 </div>
 
 <!-- Main Page -->
@@ -149,10 +161,35 @@
     </nav>
     <div id="reception" class="tab-content active">
         <h2>Reception</h2>
-        <p><Strong>Zuma <br> 2nd Floor Four Seasons Hotel</Strong><br>1 Dalton St, Boston</p>
-        <p><i>January 11, 2025</i></p>
-        <p><i>12:00 PM - 3:00 PM</i></p>
+        <p><strong>Address:</strong></p>
+        <p>Zuma<br>2nd Floor Four Seasons<br>1 Dalton St, Boston</p>
+        <p><strong>Date:</strong> January 11, 2025</p>
+        <p><strong>Time:</strong> 12:00 PM - 3:00 PM</p>
         <p><strong>Dress Code:</strong> Formal Attire</p>
+        <h3>Menu:</h3>
+        <ul>
+            <li><strong>Nigiri & Maki:</strong>
+                <ul>
+                    <li>Tuna</li>
+                    <li>Salmon</li>
+                </ul>
+            </li>
+            <li><strong>Plates:</strong>
+                <ul>
+                    <li>Spicy Fried Chicken with Lemon Chili Sauce</li>
+                </ul>
+            </li>
+            <li><strong>Canapés:</strong>
+                <ul>
+                    <li>Boston Lobster on Misobun</li>
+                </ul>
+            </li>
+            <li><strong>Sweets:</strong>
+                <ul>
+                    <li>Coconut Lychee Truffle with White Chocolate (GF)</li>
+                </ul>
+            </li>
+        </ul>
     </div>
     <div id="album" class="tab-content">
         <h2>Album</h2>
