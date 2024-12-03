@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charlie & Jieying Wedding Invitation</title>
     <script>
+        // Function to load external HTML sections
         function loadSection(sectionId, fileName) {
             fetch(fileName)
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to load ${fileName}: ${response.status}`);
+                    }
+                    return response.text();
+                })
                 .then(data => {
                     document.getElementById(sectionId).innerHTML = data;
                 })
                 .catch(error => console.error('Error loading section:', error));
         }
 
+        // Load sections after DOM content is loaded
         document.addEventListener('DOMContentLoaded', () => {
             loadSection('menu-section', 'menu.html');
             loadSection('rsvp-section', 'rsvp.html');
@@ -21,26 +28,27 @@
 
         // RSVP Form Functions
         function openRsvpForm() {
-            document.getElementById('rsvp-form').style.display = 'block';
+            const form = document.getElementById('rsvp-form');
+            if (form) form.style.display = 'block';
         }
 
         function closeRsvpForm() {
-            document.getElementById('rsvp-form').style.display = 'none';
+            const form = document.getElementById('rsvp-form');
+            if (form) form.style.display = 'none';
         }
 
         function submitRsvp(event) {
-            event.preventDefault(); // Prevent traditional form submission
-            const name = document.getElementById('name').value;
-            const plusOne = document.getElementById('plus-one').value;
-            const phone = document.getElementById('phone').value;
-            const diet = document.getElementById('diet').value;
+            event.preventDefault();
+            const name = document.getElementById('name')?.value || 'Unknown';
+            const plusOne = document.getElementById('plus-one')?.value || 'No';
+            const phone = document.getElementById('phone')?.value || 'N/A';
+            const diet = document.getElementById('diet')?.value || 'None';
 
             alert(`Thank you, ${name}!
             RSVP confirmed.
             Plus One: ${plusOne}
             Phone: ${phone}
-            Dietary Restrictions: ${diet || 'None'}`);
-
+            Dietary Restrictions: ${diet}`);
             closeRsvpForm();
         }
     </script>
