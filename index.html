@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlie & Jieying</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Welcome Page Styles */
+        #welcome {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://via.placeholder.com/1000x600') no-repeat center center/cover;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        #welcome h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        #welcome p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0 2rem;
+        }
+
+        #welcome button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #welcome button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Main Page Styles */
+        #main-page {
+            display: none;
+            padding: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        nav button {
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        nav button:hover {
+            background: #0056b3;
+        }
+
+        nav button.active {
+            background: #0056b3;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Reception Content */
+        #reception {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        #reception ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #reception ul li {
+            margin: 0.5rem 0;
+        }
+
+        /* Album Content */
+        #album {
+            padding: 1rem;
+        }
+
+        #album p {
+            font-style: italic;
+        }
+
+        /* Gift List Content */
+        #gift-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #gift-list ul li {
+            margin: 0.5rem 0;
+        }
+
+        #gift-list a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        #gift-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Welcome Page -->
+<div id="welcome">
+    <h1>Charlie & Jieying</h1>
+    <p>1.11.2025</p>
+    <button onclick="showMainPage()">RSVP</button>
+</div>
+
+<!-- Main Page -->
+<div id="main-page">
+    <nav>
+        <button class="active" onclick="showTab('reception')">Reception</button>
+        <button onclick="showTab('album')">Album</button>
+        <button onclick="showTab('gift-list')">Gift List</button>
+    </nav>
+    <div id="reception" class="tab-content active">
+        <h2>Reception</h2>
+        <p><strong>Address:</strong> TBD</p>
+        <p><strong>Date:</strong> January 11, 2025</p>
+        <p><strong>Time:</strong> 12:00 PM - 3:00 PM</p>
+        <p><strong>Dress Code:</strong> Formal Attire</p>
+        <h3>Food Menu:</h3>
+        <ul>
+            <li>Starter: Caesar Salad</li>
+            <li>Main: Grilled Salmon or Prime Rib</li>
+            <li>Dessert: Chocolate Mousse</li>
+        </ul>
+    </div>
+    <div id="album" class="tab-content">
+        <h2>Album</h2>
+        <p>Check back after the reception for beautiful pictures to download!</p>
+    </div>
+    <div id="gift-list" class="tab-content">
+        <h2>Gift List</h2>
+        <ul>
+            <li><a href="https://www.amazon.com" target="_blank">Kitchen Mixer</a></li>
+            <li><a href="https://www.target.com" target="_blank">Home Decor</a></li>
+            <li><a href="https://www.wayfair.com" target="_blank">Dining Set</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function showMainPage() {
+        document.getElementById('welcome').style.display = 'none';
+        document.getElementById('main-page').style.display = 'block';
+    }
+
+    function showTab(tabId) {
+        // Remove active class from all tabs
+        const tabs = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('nav button');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        // Show selected tab and highlight button
+        document.getElementById(tabId).classList.add('active');
+        document.querySelector(`nav button[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
