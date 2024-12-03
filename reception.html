@@ -1,23 +1,29 @@
-<br><!-- Reception Info in reception_info.html -->
-<div id="reception-info-section"></div>
-
-<br><!-- RSVP in reception_rsvp.html -->
-<div id="reception-rsvp-section"></div>
-
-<br><!-- Menu in reception_menu.html -->
-<div id="reception-menu-section"></div>
-
+<div id="reception">
+    <!-- Placeholder for Reception Info -->
+    <div id="reception-info-section"></div>
+    
+    <br><!-- Placeholder for RSVP -->
+    <div id="reception-rsvp-section"></div>
+    
+    <br><!-- Placeholder for Menu -->
+    <div id="reception-menu-section"></div>
+</div>
 
 <script>
+    // Function to dynamically load content into sections
     function loadSection(sectionId, fileName) {
         fetch(fileName)
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) throw new Error(`Failed to load ${fileName}: ${response.status}`);
+                return response.text();
+            })
             .then(data => {
                 document.getElementById(sectionId).innerHTML = data;
             })
-            .catch(error => console.error('Error loading section:', error));
+            .catch(error => console.error(`Error loading section '${fileName}':`, error));
     }
-    
+
+    // Load content for all sections when the page loads
     document.addEventListener('DOMContentLoaded', () => {
         loadSection('reception-info-section', 'reception_info.html');
         loadSection('reception-rsvp-section', 'reception_rsvp.html');
