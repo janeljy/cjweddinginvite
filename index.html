@@ -4,63 +4,230 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charlie & Jieying Wedding Invitation</title>
-    <script>
-        // Function to load external HTML sections
-        function loadSection(sectionId, fileName) {
-            fetch(fileName)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Failed to load ${fileName}: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById(sectionId).innerHTML = data;
-                })
-                .catch(error => console.error('Error loading section:', error));
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Playfair Display', serif; /* Slim serif font */
+            margin: 0;
+            padding: 0;
+            background-color: #b8e3e9; /* Lightest color */
+            color: #0b2e33; /* Darkest color for text */
+            text-align: center;
         }
 
-        // Load sections after DOM content is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            loadSection('menu-section', 'menu.html');
-            loadSection('rsvp-section', 'rsvp.html');
-        });
-
-        // RSVP Form Functions
-        function openRsvpForm() {
-            const form = document.getElementById('rsvp-form');
-            if (form) form.style.display = 'block';
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif; /* Elegant headers */
+            margin: 0;
         }
 
-        function closeRsvpForm() {
-            const form = document.getElementById('rsvp-form');
-            if (form) form.style.display = 'none';
+        p, label {
+            font-family: 'Merriweather', serif; /* Supporting text font */
         }
 
-        function submitRsvp(event) {
-            event.preventDefault();
-            const name = document.getElementById('name')?.value || 'Unknown';
-            const plusOne = document.getElementById('plus-one')?.value || 'No';
-            const phone = document.getElementById('phone')?.value || 'N/A';
-            const diet = document.getElementById('diet')?.value || 'None';
-
-            alert(`Thank you, ${name}!
-            RSVP confirmed.
-            Plus One: ${plusOne}
-            Phone: ${phone}
-            Dietary Restrictions: ${diet}`);
-            closeRsvpForm();
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin: 1rem auto;
+            max-width: 600px;
         }
-    </script>
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Welcome Page Styles */
+        #welcome {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #b8e3e9, #93b1b5);
+            color: #0b2e33;
+        }
+
+        #welcome h1 {
+            font-size: 3rem;
+            color: #0b2e33;
+        }
+
+        #welcome p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0 2rem;
+            color: #4f7c82;
+        }
+
+        #welcome button {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; /* Adjusted size for 1.5x scale */
+            color: #0b2e33;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 1.5rem 2.5rem; /* Increased padding for a larger button */
+        }
+
+        #welcome button:hover {
+            color: #4f7c82;
+        }
+
+        /* Main Page Styles */
+        #main-page {
+            display: none;
+            padding: 1rem;
+        }
+
+        .return-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            color: #0b2e33;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .return-button:hover {
+            color: #4f7c82;
+        }
+
+        .return-button::before {
+            content: "← "; /* Unicode for left arrow */
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        nav button {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            border: none;
+            background: none;
+            color: #0b2e33;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav button:hover {
+            color: #4f7c82;
+        }
+
+        nav button.active {
+            color: #4f7c82;
+            text-decoration: underline;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<!-- Welcome Page -->
+<div id="welcome">
     <h1>Charlie & Jieying</h1>
     <p>1.11.2025</p>
+    <button onclick="showMainPage()">RSVP</button>
+</div>
 
-    <!-- Menu Section -->
-    <div id="menu-section"></div>
+<!-- Main Page -->
+<div id="main-page">
+    <!-- Return Button -->
+    <a class="return-button" href="#" onclick="returnToWelcome()">Return</a>
+    
+    <nav>
+        <button class="active" onclick="showTab('reception')">Reception</button>
+        <button onclick="showTab('album')">Album</button>
+        <button onclick="showTab('gift-list')">Gift List</button>
+    </nav>
+    <div id="reception" class="tab-content active">
+        <h2>Reception</h2>
+        <p><strong>Address:</strong></p>
+        <p>Zuma<br>2nd Floor Four Seasons<br>1 Dalton St, Boston</p>
+        <p><strong>Date:</strong> January 11, 2025</p>
+        <p><strong>Time:</strong> 12:00 PM - 3:00 PM</p>
+        <p><strong>Dress Code:</strong> Formal Attire</p>
+        <h3>Menu:</h3>
+        <ul>
+            <li><strong>Nigiri & Maki:</strong>
+                <ul>
+                    <li>Tuna</li>
+                    <li>Salmon</li>
+                </ul>
+            </li>
+            <li><strong>Plates:</strong>
+                <ul>
+                    <li>Spicy Fried Chicken with Lemon Chili Sauce</li>
+                </ul>
+            </li>
+            <li><strong>Canapés:</strong>
+                <ul>
+                    <li>Boston Lobster on Misobun</li>
+                </ul>
+            </li>
+            <li><strong>Sweets:</strong>
+                <ul>
+                    <li>Coconut Lychee Truffle with White Chocolate (GF)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="album" class="tab-content">
+        <h2>Album</h2>
+        <p>Check back after the reception for beautiful pictures to download!</p>
+    </div>
+    <div id="gift-list" class="tab-content">
+        <h2>Gift List</h2>
+        <ul>
+            <li><a href="https://www.amazon.com" target="_blank">Kitchen Mixer</a></li>
+            <li><a href="https://www.target.com" target="_blank">Home Decor</a></li>
+            <li><a href="https://www.wayfair.com" target="_blank">Dining Set</a></li>
+        </ul>
+    </div>
+</div>
 
-    <!-- RSVP Section -->
-    <div id="rsvp-section"></div>
+<script>
+    function showMainPage() {
+        document.getElementById('welcome').style.display = 'none';
+        document.getElementById('main-page').style.display = 'block';
+    }
+
+    function returnToWelcome() {
+        document.getElementById('main-page').style.display = 'none';
+        document.getElementById('welcome').style.display = 'flex';
+    }
+
+    function showTab(tabId) {
+        // Remove active class from all tabs
+        const tabs = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('nav button');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
+
+        // Show selected tab and highlight button
+        document.getElementById(tabId).classList.add('active');
+        document.querySelector(`nav button[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
+</script>
+
 </body>
 </html>
