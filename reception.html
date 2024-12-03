@@ -17,3 +17,52 @@
     </iframe>
 </div>
 
+<script>
+    // Function to load external HTML sections
+    function loadSection(sectionId, fileName) {
+        fetch(fileName)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${fileName}: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById(sectionId).innerHTML = data;
+            })
+            .catch(error => console.error('Error loading section:', error));
+    }
+
+    // Load sections after DOM content is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        loadSection('reception-info-section', 'reception_info.html');
+        loadSection('reception-rsvp-section', 'reception_rsvp.html');
+        loadSection('reception-menu-section', 'reception_menu.html');
+    });
+
+    // RSVP Form Functions
+    function openRsvpForm() {
+        const form = document.getElementById('rsvp-form');
+        if (form) form.style.display = 'block';
+    }
+
+    function closeRsvpForm() {
+        const form = document.getElementById('rsvp-form');
+        if (form) form.style.display = 'none';
+    }
+
+    function submitRsvp(event) {
+        event.preventDefault();
+        const name = document.getElementById('name')?.value || 'Unknown';
+        const plusOne = document.getElementById('plus-one')?.value || 'No';
+        const phone = document.getElementById('phone')?.value || 'N/A';
+        const diet = document.getElementById('diet')?.value || 'None';
+
+        alert(`Thank you, ${name}!
+        RSVP confirmed.
+        Plus One: ${plusOne}
+        Phone: ${phone}
+        Dietary Restrictions: ${diet}`);
+        closeRsvpForm();
+    }
+</script>
