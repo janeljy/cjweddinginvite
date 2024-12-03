@@ -160,15 +160,13 @@
         <button onclick="showTab('gift-list')">Gift List</button>
     </nav>
     <div id="reception" class="tab-content active">
-        <h2>Reception</h2>
-        <p><strong>Address:</strong></p>
-        <p>Zuma<br>2nd Floor Four Seasons<br>1 Dalton St, Boston</p>
-        <p><strong>Date:</strong> January 11, 2025</p>
-        <p><strong>Time:</strong> 12:00 PM - 3:00 PM</p>
-        <p><strong>Dress Code:</strong> Formal Attire</p>
+        <!-- Reception Info in reception.html -->
+        <div id="reception-section"></div>
+        
         <!-- RSVP Section in rsvp.html -->
         <div id="rsvp-section"></div>
-        <!-- Menu Section in menu.html -->
+        
+        <!-- Menu in menu.html -->
         <div id="menu-section"></div>
     </div>
     <div id="album" class="tab-content">
@@ -225,8 +223,9 @@
 
     // Load sections after DOM content is loaded
     document.addEventListener('DOMContentLoaded', () => {
-        loadSection('menu-section', 'menu.html');
+        loadSection('reception-section', 'reception.html');
         loadSection('rsvp-section', 'rsvp.html');
+        loadSection('menu-section', 'menu.html');
     });
 
     // RSVP Form Functions
