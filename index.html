@@ -16,7 +16,7 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif; /* headers */
+            font-family: 'Playfair Display', serif; /* Elegant headers */
             margin: 0;
         }
 
@@ -24,43 +24,6 @@
             font-family: 'Merriweather', serif; /* Supporting text font */
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            margin: 1rem 0;
-            background: none;
-            padding: 1rem;
-            border-radius: 10px;
-        }
-
-        nav button {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            border: none;
-            background: none;
-            color: none;
-            cursor: pointer;
-            margin: 0 1rem;
-            padding: 0.5rem 1rem;
-            transition: background 0.3s ease;
-        }
-
-        nav button:hover {
-            background: #93b1b5;
-        }
-
-        nav button.active {
-            background: #93b1b5;
-            border-radius: 5px;
-        }
-
-        hr {
-            border: 0;
-            border-top: 4px solid #93b1b5;
-            margin: 0 auto;
-            max-width: 90%;
-        }
-        
         ul {
             list-style: none;
             padding: 0;
@@ -97,9 +60,9 @@
 
         #welcome button {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.8rem; /* Adjusted size for 1.5x scale */
             color: #0b2e33;
-            border: 2px solid #0b2e33;
+            border: none;
             background: none;
             cursor: pointer;
             transition: color 0.3s ease;
@@ -120,7 +83,7 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            font-size: 1.0rem;
+            font-size: 1.2rem;
             font-family: 'Playfair Display', serif;
             color: #0b2e33;
             border: none;
@@ -189,15 +152,57 @@
 <!-- Main Page -->
 <div id="main-page">
     <!-- Return Button -->
-    <a class="return-button" href="#" onclick="returnToWelcome()">back</a>
+    <a class="return-button" href="#" onclick="returnToWelcome()">Return</a>
     
-    <!-- Navigation Bar -->
     <nav>
-        <button id="reception-tab" onclick="loadTabContent('reception-tab', 'reception.html')">Reception</button>
-        <button id="album-tab" onclick="loadTabContent('album-tab', 'album.html')">Album</button>
-        <button id="gift-tab" onclick="loadTabContent('gift-tab', 'gift.html')">Wish List</button>
+        <button class="active" onclick="showTab('reception')">Reception</button>
+        <button onclick="showTab('album')">Album</button>
+        <button onclick="showTab('gift-list')">Gift List</button>
     </nav>
-    <hr style="border: 0; margin: 0 auto; max-width: 90%;">
+    <div id="reception" class="tab-content active">
+        <h2>Reception</h2>
+        <p><strong>Address:</strong></p>
+        <p>Zuma<br>2nd Floor Four Seasons<br>1 Dalton St, Boston</p>
+        <p><strong>Date:</strong> January 11, 2025</p>
+        <p><strong>Time:</strong> 12:00 PM - 3:00 PM</p>
+        <p><strong>Dress Code:</strong> Formal Attire</p>
+        <h3>Menu:</h3>
+        <ul>
+            <li><strong>Nigiri & Maki:</strong>
+                <ul>
+                    <li>Tuna</li>
+                    <li>Salmon</li>
+                </ul>
+            </li>
+            <li><strong>Plates:</strong>
+                <ul>
+                    <li>Spicy Fried Chicken with Lemon Chili Sauce</li>
+                </ul>
+            </li>
+            <li><strong>Canapés:</strong>
+                <ul>
+                    <li>Boston Lobster on Misobun</li>
+                </ul>
+            </li>
+            <li><strong>Sweets:</strong>
+                <ul>
+                    <li>Coconut Lychee Truffle with White Chocolate (GF)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="album" class="tab-content">
+        <h2>Album</h2>
+        <p>Check back after the reception for beautiful pictures to download!</p>
+    </div>
+    <div id="gift-list" class="tab-content">
+        <h2>Gift List</h2>
+        <ul>
+            <li><a href="https://www.amazon.com" target="_blank">Kitchen Mixer</a></li>
+            <li><a href="https://www.target.com" target="_blank">Home Decor</a></li>
+            <li><a href="https://www.wayfair.com" target="_blank">Dining Set</a></li>
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -211,32 +216,17 @@
         document.getElementById('welcome').style.display = 'flex';
     }
 
-    // Function to load sections dynamically
-        function loadTabContent(tabId, fileName) {
-            fetch(fileName)
-                .then(response => {
-                    if (!response.ok) throw new Error(`Failed to load ${fileName}: ${response.status}`);
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('content-section').innerHTML = data;
-                    setActiveTab(tabId);
-                })
-                .catch(error => console.error('Error loading section:', error));
-        }
+    function showTab(tabId) {
+        // Remove active class from all tabs
+        const tabs = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('nav button');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        buttons.forEach(button => button.classList.remove('active'));
 
-        // Function to set the active tab
-        function setActiveTab(activeTabId) {
-            const tabs = document.querySelectorAll('nav button');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            document.getElementById(activeTabId).classList.add('active');
-        }
-
-        // Load default tab on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            loadTabContent('reception-tab', 'reception.html'); // Load Reception Info by default
-        });
-
+        // Show selected tab and highlight button
+        document.getElementById(tabId).classList.add('active');
+        document.querySelector(`nav button[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
 </script>
 
 </body>
