@@ -102,7 +102,7 @@
         .return-button::before {
             content: "← "; /* Unicode for left arrow */
             margin-right: 0.5rem;
-            font-size: 1.2rem;
+            font-size: 1.0rem;
         }
 
         nav {
@@ -152,39 +152,25 @@
 <!-- Main Page -->
 <div id="main-page">
     <!-- Return Button -->
-    <a class="return-button" href="#" onclick="returnToWelcome()">Return</a>
-    
+    <a class="return-button" href="#" onclick="returnToWelcome()">back</a>
+    <hr>
     <nav>
         <button class="active" onclick="showTab('reception')">Reception</button>
         <button onclick="showTab('album')">Album</button>
         <button onclick="showTab('gift-list')">Gift List</button>
     </nav>
+    
     <div id="reception" class="tab-content active">
-        <h2>Reception</h2>
-        <p><strong>Address:</strong></p>
-        <p>Zuma<br>2nd Floor Four Seasons<br>1 Dalton St, Boston</p>
-        <p><strong>Date:</strong> January 11, 2025</p>
-        <p><strong>Time:</strong> 12:00 PM - 3:00 PM</p>
-        <p><strong>Dress Code:</strong> Formal Attire</p>
-
-        <br><!-- Reception Info in reception_info.html -->
-        <div id="reception-info-section"></div>
         
-        <br><!-- Menu in reception_menu.html -->
-        <div id="reception-menu-section"></div>
 
     </div>
+
+    
     <div id="album" class="tab-content">
-        <h2>Album</h2>
-        <p>Check back after the reception for beautiful pictures to download!</p>
     </div>
+
+    
     <div id="gift-list" class="tab-content">
-        <h2>Gift List</h2>
-        <ul>
-            <li><a href="https://www.amazon.com" target="_blank">Kitchen Mixer</a></li>
-            <li><a href="https://www.target.com" target="_blank">Home Decor</a></li>
-            <li><a href="https://www.wayfair.com" target="_blank">Dining Set</a></li>
-        </ul>
     </div>
 </div>
 
