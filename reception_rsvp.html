@@ -8,9 +8,29 @@
     cursor: pointer; 
     transition: color 0.3s ease, background 0.3s ease, border 0.3s ease;">RSVP Now</button>
 
-<div id="rsvp-form" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 90%; max-width: 400px;">
-    <button onclick="closeRsvpForm()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer;">×</button>
+<div id="rsvp-form" 
+    style="display: none; 
+    position: fixed; 
+    top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: white; 
+    padding: 1.5rem; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    width: 90%; 
+    max-width: 400px;">
+    
+    <button onclick="closeRsvpForm()" 
+        style="position: absolute; 
+        top: 10px; 
+        right: 10px; 
+        background: none; 
+        border: none; 
+        font-size: 1.2rem; 
+        cursor: pointer;">×</button>
+    
     <h3 style="font-family: 'Playfair Display', serif; text-align: center;">RSVP Confirmation</h3>
+    
     <form onsubmit="submitRsvp(event)">
         <label for="name" style="font-family: 'Merriweather', serif;">Name:</label>
         <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px;">
@@ -37,15 +57,20 @@
 </div>
 
 <script>
-    // RSVP Form Functions
     function openRsvpForm() {
         const form = document.getElementById('rsvp-form');
-        if (form) form.style.display = 'block';
+        if (form) {
+            form.style.display = 'block'; // Make the form visible
+        } else {
+            console.error('RSVP form not found. Ensure the ID "rsvp-form" matches.');
+        }
     }
 
     function closeRsvpForm() {
         const form = document.getElementById('rsvp-form');
-        if (form) form.style.display = 'none';
+        if (form) {
+            form.style.display = 'none';
+        }
     }
 
     function submitRsvp(event) {
