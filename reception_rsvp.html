@@ -52,6 +52,7 @@
         event.preventDefault();
         const name = document.getElementById('name')?.value || 'Unknown';
         const plusOne = document.getElementById('plus-one')?.value || 'No';
+        const plusOneName = document.getElementById('plus-one-name')?.value || 'N/A';
         const phone = document.getElementById('phone')?.value || 'N/A';
         const diet = document.getElementById('diet')?.value || 'None';
 
@@ -61,5 +62,17 @@
         Phone: ${phone}
         Dietary Restrictions: ${diet}`);
         closeRsvpForm();
+    }
+
+    // Show/hide the Plus One's name field based on selection
+    function togglePlusOneField() {
+        const plusOneSelect = document.getElementById('plus-one');
+        const plusOneNameField = document.getElementById('plus-one-name-field');
+        if (plusOneSelect.value === 'Yes') {
+            plusOneNameField.style.display = 'block';
+        } else {
+            plusOneNameField.style.display = 'none';
+            document.getElementById('plus-one-name').value = ''; // Clear input
+        }
     }
 </script>
