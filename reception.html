@@ -27,10 +27,11 @@
             .catch(error => console.error(`Error loading section '${fileName}':`, error));
     }
 
+
     // Load content for all sections when the page loads
     document.addEventListener('DOMContentLoaded', () => {
         loadSection('reception-info-section', 'reception_info.html');
-        loadSection('reception-rsvp-section', 'reception_rsvp.html');
+        loadSection('reception-rsvp-button', 'reception_rsvp.html');
         loadSection('reception-menu-section', 'reception_menu.html');
     });
 </script>
