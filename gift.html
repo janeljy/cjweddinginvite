@@ -19,31 +19,35 @@
         <img src="https://via.placeholder.com/150" alt="Gift 1">
         <p>Kitchen Mixer</p>
         <a href="https://www.amazon.com" target="_blank">View Item</a>
-        <button onclick="claimGift('item1')">Claim</button>
+        <button onclick="confirmClaim('item1')">Claim</button>
     </div>
 
     <div class="gift-item" id="item2">
         <img src="https://via.placeholder.com/150" alt="Gift 2">
         <p>Home Decor</p>
         <a href="https://www.target.com" target="_blank">View Item</a>
-        <button onclick="claimGift('item2')">Claim</button>
+        <button onclick="confirmClaim('item2')">Claim</button>
     </div>
 
     <div class="gift-item" id="item3">
         <img src="https://via.placeholder.com/150" alt="Gift 3">
         <p>Dining Set</p>
         <a href="https://www.wayfair.com" target="_blank">View Item</a>
-        <button onclick="claimGift('item3')">Claim</button>
+        <button onclick="confirmClaim('item3')">Claim</button>
     </div>
 </div>
 
 <script>
     // Function to claim a gift
-    function claimGift(itemId) {
+    function confirmClaim(itemId) {
         const item = document.getElementById(itemId);
         if (item) {
-            item.classList.add('claimed'); // Add claimed class
-            alert(`Thank you! ${item.querySelector('p').textContent} has been claimed.`);
+            const giftName = item.querySelector('p').textContent;
+            const confirmed = confirm(`Are you sure you want to claim "${giftName}" and cross it off the list?`);
+            if (confirmed) {
+                item.classList.add('claimed'); // Add claimed class
+                alert(`Thank you! "${giftName}" has been claimed.`);
+            }
         }
     }
 </script>
