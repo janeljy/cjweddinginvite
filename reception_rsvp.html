@@ -2,15 +2,15 @@
 
 <div id="rsvp-form" style="margin: 2rem auto; background: none; padding: 1.5rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 80%; max-width: 400px;">
     <form action="https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse" method="POST" target="_self">
-        <label for="name">Name</label><br>
+        <label for="name">Name</label>
         <input type="text" id="name" name="entry.1073488792" required
             style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"><br>
 
-        <label for="phone">Phone Number</label><br>
+        <label for="phone">Phone Number</label>
         <input type="tel" id="phone" name="entry.229180976"
             style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"><br>
         
-        <label for="plus-one">Bringing a Plus One?</label><br>
+        <label for="plus-one">Bringing a Plus One?</label>
         <select id="plus-one" name="entry.1301153858" onchange="togglePlusOneField()" required>
             <option value="No" selected>No</option>
             <option value="Yes">Yes</option>
@@ -18,11 +18,11 @@
 
         <div id="plus-one-name-field">
             <label for="plus-one-name">Plus One's Name</label>
-            <input type="text" id="plus-one-name" name="entry.1310270178" placeholder="Plus One's full name">
+            <input type="text" id="plus-one-name" name="entry.1310270178">
         </div>
 
         <label for="diet">Dietary Restrictions</label>
-            <textarea id="diet" name="entry.670485444" rows="3" placeholder="Any dietary restrictions"></textarea>
+            <textarea id="diet" name="entry.670485444" rows="3" placeholder="Anything we can't feed you"></textarea>
 
         <button type="submit">Submit</button>
     </form>
@@ -51,7 +51,6 @@
         padding: 1.5rem;
         background: white;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
         width: 90%;
         max-width: 400px;
         text-align: left;
@@ -59,30 +58,44 @@
     label {
         display: block;
         margin-bottom: 0.5rem;
-        font-family: 'Merriweather', serif;
+        font-family: 'Playfair Display', serif;
         font-weight: bold;
     }
-    input, select, textarea, button {
-            width: 80%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: none;
-            font-family: 'Playfair Display', serif;
-        }
-    button {
+    input, textarea {
+        width: 90%;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid #4f7c82;
         font-family: 'Playfair Display', serif;
         font-size: 1rem;
-        color: white;
+    }
+    button {
+        width: 90%;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
         border: 1px solid #4f7c82;
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
         background: #4f7c82;
         cursor: pointer;
-        transition: color 0.3s ease;
-        padding: 0.5rem; /* Increased padding for a larger button */
+        transition: border-color 0.3s ease;
     }
     button:hover {
             color: #4f7c82;
         }
     #plus-one-name-field {
         display: none;
+    }
+    select {
+        width: 90%;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid #4f7c82;
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        background: #4f7c82;
+        appearance: none; /* Remove native dropdown styling */
+        -webkit-appearance: none; /* For Safari */
+        -moz-appearance: none; /* For Firefox */
     }
 </style>
