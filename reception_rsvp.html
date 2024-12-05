@@ -1,80 +1,88 @@
 <h2>RSVP Confirmation</h2>
 
 <div id="rsvp-form" style="margin: 2rem auto; background: none; padding: 1.5rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 80%; max-width: 400px;">
-    <form action="https://docs.google.com/forms/d/1ypIlwbshdNaLU8EMNyXI4APy5rJiJ3Nux22JF11EYwc/formResponse" method="POST" target="_self">
-        <label for="name" style="font-family: 'Merriweather', serif;">Name</label><br>
+    <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse?edit2=2_ABaOnuetNpVCcN1UrvCua7bJ_O6ddghIqV_jtS9K30gJlocq9At9Gj8DByt_fUE7AQ" method="POST" target="_self">
+        <label for="name">Name</label><br>
         <input type="text" id="name" name="entry.1073488792" required
             style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"><br>
 
-        <label for="plus-one" style="font-family: 'Merriweather', serif;">Bringing a Plus One?</label><br>
-        <select id="plus-one" name="entry.1301153858" onchange="togglePlusOneField()" required  
-            style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;">
+        <label for="phone">Phone Number</label><br>
+        <input type="tel" id="phone" name="entry.229180976"
+            style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"><br>
+        
+        <label for="plus-one">Bringing a Plus One?</label><br>
+        <select id="plus-one" name="entry.1301153858" onchange="togglePlusOneField()" required>
             <option value="No" selected>No</option>
             <option value="Yes">Yes</option>
         </select><br>
 
-        <div id="plus-one-name-field" style="display: none;">
-            <label for="plus-one-name" style="font-family: 'Merriweather', serif;">Plus One's Name:</label><br>
-            <input type="text" id="plus-one-name" name="entry.1310270178"
-                style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;">
-        </div><br>
+        <div id="plus-one-name-field">
+            <label for="plus-one-name">Plus One's Name</label>
+            <input type="text" id="plus-one-name" name="entry.1310270178" placeholder="Plus One's full name">
+        </div>
 
-        <label for="phone" style="font-family: 'Merriweather', serif;">Your Phone Number</label><br>
-        <input type="tel" id="phone" name="entry.229180976" required
-            style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"><br>
+        <label for="diet">Dietary Restrictions</label>
+            <textarea id="diet" name="entry.670485444" rows="3" placeholder="Any dietary restrictions"></textarea>
 
-        <label for="diet" style="font-family: 'Merriweather', serif;">Dietary Restrictions</label><br>
-        <textarea id="diet" name="entry.670485444" rows="3"
-            style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"></textarea><br>
-
-        <button type="submit">
-            Submit
-        </button>
+        <button type="submit">Submit</button>
     </form>
 </div>
 
 <script>
-function togglePlusOneField() {
-    const plusOneField = document.getElementById('plus-one-name-field');
-    const plusOneSelect = document.getElementById('plus-one');
-    if (plusOneSelect.value === 'Yes') {
-        plusOneField.style.display = 'block';
-    } else {
-        plusOneField.style.display = 'none';
-        document.getElementById('plus-one-name').value = ''; // Clear the field
+    function togglePlusOneField() {
+        const plusOneField = document.getElementById('plus-one-name-field');
+        const plusOneSelect = document.getElementById('plus-one');
+        if (plusOneSelect.value === 'Yes') {
+            plusOneField.style.display = 'block';
+        } else {
+            plusOneField.style.display = 'none';
+            document.getElementById('plus-one-name').value = ''; // Clear the field
+        }
     }
-}
 
-function submitRsvp(event) {
-    event.preventDefault(); // Prevent form submission from reloading the page
-
-    const name = document.getElementById('name')?.value || 'Unknown';
-    const plusOne = document.getElementById('plus-one')?.value || 'No';
-    const plusOneName = document.getElementById('plus-one-name')?.value || 'N/A';
-    const phone = document.getElementById('phone')?.value || 'N/A';
-    const diet = document.getElementById('diet')?.value || 'None';
-
-    alert(`Thank you, ${name}!
-    RSVP confirmed.
-    Bringing Plus One: ${plusOne}
-    Plus One's Name: ${plusOneName}
-    Phone: ${phone}
-    Dietary Restrictions: ${diet}`);
-}
+    document.querySelector('form').addEventListener('submit', function(event) {
+        alert('Thank you for your RSVP! We look forward to celebrating with you!');
+    });
 </script>
 
 <style>
+    #rsvp-form {
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        text-align: left;
+    }
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-family: 'Merriweather', serif;
+        font-weight: bold;
+    }
+    input, select, textarea, button {
+            width: 80%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            font-family: 'Playfair Display', serif;
+        }
     button {
         font-family: 'Playfair Display', serif;
         font-size: 1rem;
-        color: #0b2e33;
-        border: 1px solid #0b2e33;
-        background: none;
+        color: white;
+        border: 1px solid #4f7c82;
+        background: #4f7c82;
         cursor: pointer;
         transition: color 0.3s ease;
-        padding: 0.5rem 1rem; /* Increased padding for a larger button */
+        padding: 0.5rem; /* Increased padding for a larger button */
     }
-button:hover {
-        color: #4f7c82;
+    button:hover {
+            color: #4f7c82;
+        }
+    #plus-one-name-field {
+        display: none;
     }
 </style>
