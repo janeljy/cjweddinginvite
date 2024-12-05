@@ -1,16 +1,14 @@
-<div style="border: 1px solid #0b2e33; padding: 1rem 2rem; text-align: center; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"> 
-    RSVP Confirmation
-</div>
+<h2>RSVP Confirmation</h2>
 
-<div id="rsvp-form" style="margin: 2rem auto; background: none; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 80%; max-width: 400px;">
+<div id="rsvp-form" style="margin: 2rem auto; background: none; padding: 1.5rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 80%; max-width: 400px;">
     <form action="https://docs.google.com/forms/d/1ypIlwbshdNaLU8EMNyXI4APy5rJiJ3Nux22JF11EYwc/formResponse" method="POST" target="_self">
         <label for="name" style="font-family: 'Merriweather', serif;">Name</label><br>
         <input type="text" id="name" name="entry.1073488792" required
-            style="width: 50%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px;"><br>
+            style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"><br>
 
         <label for="plus-one" style="font-family: 'Merriweather', serif;">Bringing a Plus One?</label><br>
         <select id="plus-one" name="entry.1301153858" onchange="togglePlusOneField()" required  
-            style="width: 50%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px;">
+            style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;">
             <option value="No" selected>No</option>
             <option value="Yes">Yes</option>
         </select><br>
@@ -18,16 +16,16 @@
         <div id="plus-one-name-field" style="display: none;">
             <label for="plus-one-name" style="font-family: 'Merriweather', serif;">Plus One's Name:</label><br>
             <input type="text" id="plus-one-name" name="entry.1310270178"
-                style="width: 50%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px;">
+                style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;">
         </div><br>
 
         <label for="phone" style="font-family: 'Merriweather', serif;">Your Phone Number</label><br>
         <input type="tel" id="phone" name="entry.229180976" required
-            style="width: 50%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px;"><br>
+            style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"><br>
 
         <label for="diet" style="font-family: 'Merriweather', serif;">Dietary Restrictions</label><br>
         <textarea id="diet" name="entry.670485444" rows="3"
-            style="width: 50%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px;"></textarea><br>
+            style="width: 70%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #93b1b5;"></textarea><br>
 
         <button type="submit">
             Submit
@@ -68,7 +66,7 @@ function submitRsvp(event) {
 <style>
     button {
         font-family: 'Playfair Display', serif;
-        font-size: 1.8rem; /* Adjusted size for 1.5x scale */
+        font-size: 1rem;
         color: #0b2e33;
         border: 1px solid #0b2e33;
         background: none;
