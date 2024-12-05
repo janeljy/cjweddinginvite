@@ -1,17 +1,18 @@
 <div id="reception">
     <!-- Placeholder for Reception Info -->
-    <div id="reception-info-section"></div>
-    
-    <!-- Placeholder for RSVP -->
+    <div style="margin: 1rem 0; text-align: center;">
+        <hr>
+    </div>
+
     <div id="reception-rsvp-section"></div>
 
     <div style="margin: 1rem 0; text-align: center;">
         <hr>
     </div>
     
+    <div id="reception-info-section"></div>
+    
     <!-- Placeholder for Menu -->
-    <div id="reception-menu-section"></div>
-</div>
 
 <script>
     // Function to dynamically load content into sections
@@ -32,6 +33,5 @@
     document.addEventListener('DOMContentLoaded', () => {
         loadSection('reception-info-section', 'reception_info.html');
         loadSection('reception-rsvp-button', 'reception_rsvp.html');
-        loadSection('reception-menu-section', 'reception_menu.html');
     });
 </script>
