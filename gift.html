@@ -4,144 +4,123 @@
     <hr>
 </div>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wish List</title>
-    <style>
-        body {
-            font-family: 'Playfair Display', serif;
-            margin: 0;
-            padding: 1rem;
-            background-color: #f9f9f9;
-            color: #333;
-            text-align: center;
-        }
+<h2>Wish List</h2>
 
-        h1 {
-            margin-bottom: 1rem;
-        }
+<!-- Conditional Formatting Legend -->
+<div id="legend">
+    <div><div class="legend-box white"></div> Available to Claim</div>
+    <div><div class="legend-box pink"></div> Gift Claimed</div>
+</div>
 
-        /* Conditional Formatting Legend */
-        #legend {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        #legend div {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .legend-box {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #333;
-        }
-
-        .legend-box.pink {
-            background-color: #ffc0cb; /* Pink color */
-        }
-
-        .legend-box.white {
-            background-color: #fff; /* White color */
-        }
-
-        /* Gift Grid */
-        #gift-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Two items per row */
-            gap: 1rem;
-        }
-
-        .gift-item {
-            border: 2px solid white; /* Default border */
-            padding: 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: border 0.3s ease;
-        }
-
-        .gift-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-        }
-
-        .gift-item button {
-            padding: 0.5rem 1rem;
-            background: #0b2e33;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .gift-item button:hover {
-            background: #4f7c82;
-        }
-
-        .gift-item.claimed {
-            border: 2px solid #ffc0cb; /* Pink border when claimed */
-        }
-    </style>
-</head>
-<body>
-    <h1>Wish List</h1>
-
-    <!-- Conditional Formatting Legend -->
-    <div id="legend">
-        <div><div class="legend-box white"></div> Available to Claim</div>
-        <div><div class="legend-box pink"></div> Gift Claimed</div>
+<!-- Gift Grid -->
+<div id="gift-grid">
+    <!-- Example Gift Items -->
+    <div class="gift-item" id="item1">
+        <img src="https://via.placeholder.com/150" alt="Gift 1">
+        <p>Kitchen Mixer</p>
+        <a href="https://www.amazon.com" target="_blank">View Item</a>
+        <button onclick="claimGift('item1')">Claim</button>
     </div>
 
-    <!-- Gift Grid -->
-    <div id="gift-grid">
-        <!-- Example Gift Items -->
-        <div class="gift-item" id="item1">
-            <img src="https://via.placeholder.com/150" alt="Gift 1">
-            <p>Kitchen Mixer</p>
-            <a href="https://www.amazon.com" target="_blank">View Item</a>
-            <button onclick="claimGift('item1')">Claim</button>
-        </div>
-
-        <div class="gift-item" id="item2">
-            <img src="https://via.placeholder.com/150" alt="Gift 2">
-            <p>Home Decor</p>
-            <a href="https://www.target.com" target="_blank">View Item</a>
-            <button onclick="claimGift('item2')">Claim</button>
-        </div>
-
-        <div class="gift-item" id="item3">
-            <img src="https://via.placeholder.com/150" alt="Gift 3">
-            <p>Dining Set</p>
-            <a href="https://www.wayfair.com" target="_blank">View Item</a>
-            <button onclick="claimGift('item3')">Claim</button>
-        </div>
+    <div class="gift-item" id="item2">
+        <img src="https://via.placeholder.com/150" alt="Gift 2">
+        <p>Home Decor</p>
+        <a href="https://www.target.com" target="_blank">View Item</a>
+        <button onclick="claimGift('item2')">Claim</button>
     </div>
 
-    <script>
-        // Function to claim a gift
-        function claimGift(itemId) {
-            const item = document.getElementById(itemId);
-            if (item) {
-                item.classList.add('claimed'); // Add claimed class
-                alert(`Thank you! ${item.querySelector('p').textContent} has been claimed.`);
-            }
+    <div class="gift-item" id="item3">
+        <img src="https://via.placeholder.com/150" alt="Gift 3">
+        <p>Dining Set</p>
+        <a href="https://www.wayfair.com" target="_blank">View Item</a>
+        <button onclick="claimGift('item3')">Claim</button>
+    </div>
+</div>
+
+<script>
+    // Function to claim a gift
+    function claimGift(itemId) {
+        const item = document.getElementById(itemId);
+        if (item) {
+            item.classList.add('claimed'); // Add claimed class
+            alert(`Thank you! ${item.querySelector('p').textContent} has been claimed.`);
         }
-    </script>
-</body>
-</html>
+    }
+</script>
+
+<style>
+    /* Conditional Formatting Legend */
+    #legend {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    #legend div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .legend-box {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #333;
+    }
+
+    .legend-box.pink {
+        background-color: #ffc0cb; /* Pink color */
+    }
+
+    .legend-box.white {
+        background-color: #fff; /* White color */
+    }
+
+    /* Gift Grid */
+    #gift-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Two items per row */
+        gap: 1rem;
+    }
+
+    .gift-item {
+        border: 2px solid white; /* Default border */
+        padding: 1rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: border 0.3s ease;
+    }
+
+    .gift-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+    }
+
+    .gift-item button {
+        padding: 0.5rem 1rem;
+        background: #0b2e33;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .gift-item button:hover {
+        background: #4f7c82;
+    }
+
+    .gift-item.claimed {
+        border: 2px solid #ffc0cb; /* Pink border when claimed */
+    }
+</style>
+
 
