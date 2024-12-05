@@ -13,43 +13,82 @@
 </div>
 
 <!-- Gift Grid -->
-<div id="gift-grid">
-    <!-- Example Gift Items -->
-    <div class="gift-item" id="item1">
-        <img src="https://via.placeholder.com/150" alt="Gift 1">
-        <p>Kitchen Mixer</p>
-        <a href="https://www.amazon.com" target="_blank">View Item</a>
-        <button onclick="confirmClaim('item1')">Claim</button>
-    </div>
-
-    <div class="gift-item" id="item2">
-        <img src="https://via.placeholder.com/150" alt="Gift 2">
-        <p>Home Decor</p>
-        <a href="https://www.target.com" target="_blank">View Item</a>
-        <button onclick="confirmClaim('item2')">Claim</button>
-    </div>
-
-    <div class="gift-item" id="item3">
-        <img src="https://via.placeholder.com/150" alt="Gift 3">
-        <p>Dining Set</p>
-        <a href="https://www.wayfair.com" target="_blank">View Item</a>
-        <button onclick="confirmClaim('item3')">Claim</button>
-    </div>
-</div>
+<div id="gift-grid"></div>
 
 <script>
-    // Function to claim a gift
+    const gifts = [
+        { id: 'gift1', name: 'Kitchen Mixer', link: 'https://www.amazon.com', img: 'https://via.placeholder.com/150' },
+        { id: 'gift2', name: 'Home Decor', link: 'https://www.target.com', img: 'https://via.placeholder.com/150' },
+        { id: 'gift3', name: 'Dining Set', link: 'https://www.wayfair.com', img: 'https://via.placeholder.com/150' },
+        // Add more gift objects here
+    ];
+
+    function renderGiftGrid() {
+        const giftGrid = document.getElementById('gift-grid');
+        gifts.forEach(gift => {
+            const giftItem = document.createElement('div');
+            giftItem.className = 'gift-item';
+            giftItem.id = gift.id;
+
+            const img = document.createElement('img');
+            img.src = gift.img;
+            img.alt = gift.name;
+            giftItem.appendChild(img);
+
+            const name = document.createElement('p');
+            name.textContent = gift.name;
+            giftItem.appendChild(name);
+
+            const link = document.createElement('a');
+            link.href = gift.link;
+            link.target = '_blank';
+            link.textContent = 'View Item';
+            giftItem.appendChild(link);
+
+            const buttonGroup = document.createElement('div');
+            buttonGroup.className = 'button-group';
+
+            const claimButton = document.createElement('button');
+            claimButton.textContent = 'Claim';
+            claimButton.onclick = () => confirmClaim(gift.id);
+            buttonGroup.appendChild(claimButton);
+
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.className = 'cancel-button';
+            cancelButton.onclick = () => confirmCancel(gift.id);
+            buttonGroup.appendChild(cancelButton);
+
+            giftItem.appendChild(buttonGroup);
+            giftGrid.appendChild(giftItem);
+        });
+    }
+
     function confirmClaim(itemId) {
         const item = document.getElementById(itemId);
         if (item) {
             const giftName = item.querySelector('p').textContent;
-            const confirmed = confirm(`Are you sure you want to claim "${giftName}" and cross it off the list?`);
+            const confirmed = confirm(`Are you sure you want to claim "${giftName}"?`);
             if (confirmed) {
-                item.classList.add('claimed'); // Add claimed class
+                item.classList.add('claimed');
                 alert(`Thank you! "${giftName}" has been claimed.`);
             }
         }
     }
+
+    function confirmCancel(itemId) {
+        const item = document.getElementById(itemId);
+        if (item) {
+            const giftName = item.querySelector('p').textContent;
+            const confirmed = confirm(`Are you sure you want to put "${giftName}" back on the list?`);
+            if (confirmed) {
+                item.classList.remove('claimed');
+                alert(`"${giftName}" is now available to be claimed.`);
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', renderGiftGrid);
 </script>
 
 <style>
@@ -107,23 +146,47 @@
         border-radius: 5px;
         margin-bottom: 1rem;
     }
-
-    .gift-item button {
+    .gift-item a {
+        display: inline-block;
+        margin-top: 0.5rem;
+        text-decoration: none;
+        color: #0b2e33;
+        font-family: 'Merriweather', serif;
+        font-size: 1rem;
+        font-weight: bold;
+        background: #f9f9f9;
         padding: 0.5rem 1rem;
-        background: #0b2e33;
-        color: white;
-        border: none;
+        border: 1px solid #ccc;
         border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s ease;
+        transition: all 0.3s ease;
     }
 
-    .gift-item button:hover {
+    .gift-item a:hover {
         background: #4f7c82;
+        color: white;
+        border-color: #4f7c82;
     }
-
     .gift-item.claimed {
         border: 2px solid #ffc0cb; /* Pink border when claimed */
+    }
+    .button-group {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .claim-button {
+        color: white;
+        background: #4f7c82;
+    }
+    .claim-button:hover {
+        background: #e0a894;
+    }
+    .cancel-button {
+        color: 4f7c82;
+        background: #E9BEB8; /* Red color for cancel button */
+    }
+
+    .cancel-button:hover {
+        background: #e0a894;
     }
 </style>
 
