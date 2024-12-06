@@ -180,6 +180,7 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
 </head>
+    
 <body>
 
 <!-- Welcome Page -->
@@ -191,7 +192,6 @@
 
 <!-- Main Page -->
 <div id="main-page">
-    <!-- Return Button -->
     <a class="return-button" href="#" onclick="returnToWelcome()">back</a>
     <br>
     <nav>
@@ -201,9 +201,7 @@
     </nav>
 
     <div id="reception-tab" class="tab-content active"></div>
-
     <div id="album-tab" class="tab-content"></div>
-
     <div id="gift-tab" class="tab-content"></div>
 </div>
 
@@ -219,22 +217,21 @@
     }
 
     function showTab(tabId) {
-        // Remove active class from all tabs
         const tabs = document.querySelectorAll('.tab-content');
         const buttons = document.querySelectorAll('nav button');
-        tabs.forEach(tab => tab.classList.remove('active'));
+    
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+            tab.innerHTML = ''; // Clear content of inactive tabs
+        });
         buttons.forEach(button => button.classList.remove('active'));
-
-        // Show selected tab and highlight button
+    
         document.getElementById(tabId).classList.add('active');
         document.querySelector(`nav button[onclick="showTab('${tabId}')"]`).classList.add('active');
-
-        if (tabId === 'reception-tab') {
-            loadReceptionContent();
-        }
+    
+        loadTabContent(tabId, `${tabId.split('-')[0]}.html`);
     }
 
-    // Dynamically load content into each tab from external files
     function loadTabContent(tabId, fileName) {
         fetch(fileName)
             .then(response => {
@@ -243,33 +240,20 @@
             })
             .then(data => {
                 document.getElementById(tabId).innerHTML = data;
+
+                if (tabId === 'reception-tab') {
+                    try {
+                        loadSection('reception-info-section', 'reception_info.html');
+                        loadSection('reception-rsvp-section', 'reception_rsvp.html');
+                        loadSection('reception-menu-section', 'reception_menu.html');
+                    } catch (error) {
+                        console.error('Error loading Reception sub-sections:', error);
+                    }
+                }
             })
-            .catch(error => console.error('Error loading content:', error));
+            .catch(error => console.error(`Error loading ${fileName}:`, error));
     }
 
-    // Load content for all tabs on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        loadTabContent('reception-tab', 'reception.html');
-        loadTabContent('album-tab', 'album.html');
-        loadTabContent('gift-tab', 'gift.html');
-    });
-
-    function loadReceptionContent() {
-        fetch('reception.html')
-            .then(response => {
-                if (!response.ok) throw new Error(`Failed to load reception.html: ${response.status}`);
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('reception-tab').innerHTML = data;
-                loadSection('reception-info-section', 'reception_info.html');
-                loadSection('reception-rsvp-section', 'reception_rsvp.html');
-                loadSection('reception-menu-section', 'reception_menu.html');
-            })
-            .catch(error => console.error('Error loading Reception content:', error));
-    }
-
-    // Function to dynamically load content into sections
     function loadSection(sectionId, fileName) {
         fetch(fileName)
             .then(response => {
@@ -281,9 +265,9 @@
             })
             .catch(error => console.error(`Error loading section '${fileName}':`, error));
     }
-
+    
     document.addEventListener('DOMContentLoaded', () => {
-        loadReceptionContent();
+        loadTabContent('reception-tab', 'reception.html');
     });
 </script>
 
