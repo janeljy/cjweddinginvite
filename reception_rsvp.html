@@ -2,7 +2,7 @@
     <h2>RSVP Confirmation</h2>
     
     <div id="rsvp-form">
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse" method="POST" target="_self">
+        <form id="rsvpForm">
             <label for="name">Name</label>
             <input type="text" id="name" name="entry.1073488792" required placeholder="Full Name">
     
@@ -28,6 +28,10 @@
     </div>
 </body>
 
+<div id="thank-you-message" style="display: none; color: #4f7c82; font-weight: bold; margin-top: 1rem;">
+    Thank you for your RSVP! We look forward to celebrating with you.
+</div>
+
 <script>
     function togglePlusOneField() {
         const plusOneField = document.getElementById('plus-one-name'); // Input for Plus One's Name
@@ -44,8 +48,27 @@
         }
     }
 
-    document.querySelector('form').addEventListener('submit', function(event) {
-        alert('Thank you for your RSVP! We look forward to celebrating with you!');
+    document.getElementById('rsvpForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent form from redirecting
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        try {
+            // Submit to Google Forms
+            await fetch('https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse', {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors', // Allow cross-origin submission
+            });
+
+            // Display Thank You Message
+            document.getElementById('rsvp-form').style.display = 'none';
+            document.getElementById('thank-you-message').style.display = 'block';
+        } catch (error) {
+            console.error('Error submitting the form:', error);
+            alert('There was an error submitting your RSVP. Please try again.');
+        }
     });
 </script>
 
@@ -61,6 +84,14 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         width: 90%;
         max-width: 400px;
+    }
+    #thank-you-message {
+        display: none; /* Hidden by default */
+        color: #4f7c82;
+        font-size: 1.2rem;
+        font-family: 'Playfair Display', serif;
+        margin-top: 1rem;
+        text-align: center;
     }
     label {
         display: block;
