@@ -54,7 +54,7 @@
 
         fetch(googleFormURL, {
             method: "POST",
-            mode: "no-cors",
+            mode: "cors",
             body: formData
         }).then(() => {
             // Show thank you message
