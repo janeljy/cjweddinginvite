@@ -8,20 +8,12 @@
     
             <label for="phone">Contact</label>
             <input type="tel" id="phone" name="phone" placeholder="Phone Number">
-            
-            <label for="plusOne">Bringing a Plus One?</label>
-            <select id="plusOne" name="plusOne" required>
-                <option value="No" selected>No</option>
-                <option value="Yes">Yes</option>
-            </select>
-    
-            <div id="plusOneName">
-                <label for="plusOneName">Plus One's Name</label>
-                <input type="text" id="plusOneName" name="plusOneName" placeholder="Full Name">
-            </div>
+
+            <label for="plusOneName">Plus One's Name</label>
+            <input type="text" id="plusOneName" name="plusOneName" placeholder="NA if you're not bringing anyone">
     
             <label for="diet">Dietary Restrictions</label>
-                <textarea id="diet" name="diet" rows="3" placeholder="Anything we can't feed you"></textarea>
+            <textarea id="diet" name="diet" rows="3" placeholder="Anything we can't feed you"></textarea>
     
             <button type="submit">Submit</button>
         </form>
@@ -39,7 +31,6 @@
         // Capture form data
         const name = document.getElementById('name').value;
         const phone = document.getElementById('phone').value;
-        const plusOne = document.getElementById('plusOne').value;
         const plusOneName = document.getElementById('plusOneName').value;
         const diet = document.getElementById('diet').value;
 
@@ -48,7 +39,6 @@
         const formData = new URLSearchParams();
         formData.append("entry.1073488792", name);
         formData.append("entry.229180976", phone);
-        formData.append("entry.1301153858", plusOne);
         formData.append("entry.1310270178", plusOneName);
         formData.append("entry.670485444", diet);
 
