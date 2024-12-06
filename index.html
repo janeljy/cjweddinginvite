@@ -57,19 +57,23 @@
         }
 
         button {
-            width: 50%;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
+            width: 100%; /* Full width inside the container */
+            padding: 0.5rem; /* Consistent padding */
+            margin-bottom: 1rem; /* Space below each element */
             border: 1px solid #4f7c82;
+            border-radius: 5px; /* Rounded corners */
             font-family: 'Playfair Display', serif;
             font-size: 1rem;
             background: #4f7c82;
+            color: white;
             cursor: pointer;
-            transition: border-color 0.3s ease;
+            border: none;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
+    
         button:hover {
-                color: #4f7c82;
-            }
+            background: #0b2e33;
+        }
 
         /* Welcome Page Styles */
         #welcome {
