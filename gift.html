@@ -1,198 +1,215 @@
-<div>
-    <hr>
-    <div style="height: 111px;"></div>
-    <hr>
-</div>
-
-<h2>Wish List</h2>
-
-<div id="legend">
-    <div><div class="legend-box white"></div> Available to Claim</div>
-    <div><div class="legend-box pink"></div> Gift Claimed</div>
-</div>
-
-<!-- Gift Grid -->
-<div id="gift-grid"></div>
-
-<script>
-    const gifts = [
-        { id: 'gift1', name: 'Kitchen Mixer', link: 'https://www.amazon.com', img: 'https://via.placeholder.com/150' },
-        { id: 'gift2', name: 'Home Decor', link: 'https://www.target.com', img: 'https://via.placeholder.com/150' },
-        { id: 'gift3', name: 'Dining Set', link: 'https://www.wayfair.com', img: 'https://via.placeholder.com/150' },
-    ];
-
-    function renderGiftGrid() {
-        const giftGrid = document.getElementById('gift-grid');
-        if (!giftGrid) {
-            console.error('Gift grid container not found!');
-            return;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registry Page</title>
+    <style>
+        /* Conditional Formatting Legend */
+        #legend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
+    
+        #legend div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #333;
+        }
+    
+        .legend-box.pink {
+            background-color: #ffc0cb; /* Pink color */
+        }
+    
+        .legend-box.white {
+            background-color: #fff; /* White color */
+        }
+    
+        /* Gift Grid */
+        #gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Flexible grid layout */
+            gap: 1rem; /* Space between cards */
+            padding: 1rem; /* Optional: Add padding around the grid */
+        }
+    
+        .gift-item {
+            border: 2px solid white; /* Default border */
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: border 0.3s ease;
+        }
+    
+        .gift-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        .gift-item a {
+            display: inline-block;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            color: #0b2e33;
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            font-weight: bold;
+            background: #f9f9f9;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+    
+        .gift-item a:hover {
+            background: #4f7c82;
+            color: white;
+            border-color: #4f7c82;
+        }
+        .gift-item.claimed {
+            border: 2px solid #ffc0cb; /* Pink border when claimed */
+        }
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .claim-button {
+            color: white;
+            background: #4f7c82;
+        }
+        .claim-button:hover {
+            background: #e0a894;
+        }
+        .cancel-button {
+            color: 4f7c82;
+            background: #E9BEB8; /* Red color for cancel button */
+        }
+    
+        .cancel-button:hover {
+            background: #e0a894;
+        }
+    </style>
+</head>
 
-        gifts.forEach(gift => {
-            const giftItem = document.createElement('div');
-            giftItem.className = 'gift-item';
-            giftItem.id = gift.id;
-
-            const img = document.createElement('img');
-            img.src = gift.img;
-            img.alt = gift.name;
-            giftItem.appendChild(img);
-
-            const name = document.createElement('p');
-            name.textContent = gift.name;
-            giftItem.appendChild(name);
-
-            const link = document.createElement('a');
-            link.href = gift.link;
-            link.target = '_blank';
-            link.textContent = 'View Item';
-            giftItem.appendChild(link);
-
-            const buttonGroup = document.createElement('div');
-            buttonGroup.className = 'button-group';
-
-            const claimButton = document.createElement('button');
-            claimButton.textContent = 'Claim';
-            claimButton.className = 'claim-button';
-            claimButton.onclick = () => confirmClaim(gift.id);
-            buttonGroup.appendChild(claimButton);
-
-            const cancelButton = document.createElement('button');
-            cancelButton.textContent = 'Cancel';
-            cancelButton.className = 'cancel-button';
-            cancelButton.onclick = () => confirmCancel(gift.id);
-            buttonGroup.appendChild(cancelButton);
-
-            giftItem.appendChild(buttonGroup);
-            giftGrid.appendChild(giftItem);
-        });
-    }
-
-    function confirmClaim(itemId) {
-        const item = document.getElementById(itemId);
-        if (item) {
-            const giftName = item.querySelector('p').textContent;
-            const confirmed = confirm(`Are you sure you want to claim "${giftName}"?`);
-            if (confirmed) {
-                item.classList.add('claimed');
-                alert(`Thank you! "${giftName}" has been claimed.`);
+    
+<body>
+    <div>
+        <hr>
+        <div style="height: 111px;"></div>
+        <hr>
+    </div>
+    
+    <h2>Wish List</h2>
+    
+    <div id="legend">
+        <div><div class="legend-box white"></div> Available to Claim</div>
+        <div><div class="legend-box pink"></div> Gift Claimed</div>
+    </div>
+    
+    <!-- Gift Grid -->
+    <div id="gift-grid"></div>
+    
+    <script>
+        const gifts = [
+            { id: 'gift1', name: 'Kitchen Mixer', link: 'https://www.amazon.com'},
+            { id: 'gift2', name: 'Home Decor', link: 'https://www.target.com'},
+            { id: 'gift3', name: 'Dining Set', link: 'https://www.wayfair.com'},
+        ];
+    
+        function renderGiftGrid() {
+            const giftGrid = document.getElementById('gift-grid');
+            if (!giftGrid) {
+                console.error('Gift grid container not found!');
+                return;
+            }
+        
+            gifts.forEach(gift => {
+                console.log(`Rendering gift: ${gift.name}`); // Debugging log
+        
+                const giftItem = document.createElement('div');
+                giftItem.className = 'gift-item';
+                giftItem.id = gift.id;
+        
+                // Add image
+                const img = document.createElement('img');
+                img.src = gift.img;
+                img.alt = gift.name;
+                giftItem.appendChild(img);
+        
+                // Add name
+                const name = document.createElement('p');
+                name.textContent = gift.name;
+                giftItem.appendChild(name);
+        
+                // Add link
+                const link = document.createElement('a');
+                link.href = gift.link;
+                link.target = '_blank';
+                link.textContent = 'View Item';
+                giftItem.appendChild(link);
+        
+                // Add buttons
+                const buttonGroup = document.createElement('div');
+                buttonGroup.className = 'button-group';
+        
+                const claimButton = document.createElement('button');
+                claimButton.textContent = 'Claim';
+                claimButton.className = 'claim-button';
+                claimButton.onclick = () => confirmClaim(gift.id);
+                buttonGroup.appendChild(claimButton);
+        
+                const cancelButton = document.createElement('button');
+                cancelButton.textContent = 'Cancel';
+                cancelButton.className = 'cancel-button';
+                cancelButton.onclick = () => confirmCancel(gift.id);
+                buttonGroup.appendChild(cancelButton);
+        
+                giftItem.appendChild(buttonGroup);
+                giftGrid.appendChild(giftItem);
+            });
+        }
+    
+    
+        function confirmClaim(itemId) {
+            const item = document.getElementById(itemId);
+            if (item) {
+                const giftName = item.querySelector('p').textContent;
+                const confirmed = confirm(`Are you sure you want to claim "${giftName}"?`);
+                if (confirmed) {
+                    item.classList.add('claimed');
+                    alert(`Thank you! "${giftName}" has been claimed.`);
+                }
             }
         }
-    }
-
-    function confirmCancel(itemId) {
-        const item = document.getElementById(itemId);
-        if (item) {
-            const giftName = item.querySelector('p').textContent;
-            const confirmed = confirm(`Are you sure you want to put "${giftName}" back on the list?`);
-            if (confirmed) {
-                item.classList.remove('claimed');
-                alert(`"${giftName}" is now available to be claimed.`);
+    
+        function confirmCancel(itemId) {
+            const item = document.getElementById(itemId);
+            if (item) {
+                const giftName = item.querySelector('p').textContent;
+                const confirmed = confirm(`Are you sure you want to put "${giftName}" back on the list?`);
+                if (confirmed) {
+                    item.classList.remove('claimed');
+                    alert(`"${giftName}" is now available to be claimed.`);
+                }
             }
         }
-    }
-
-    document.addEventListener('DOMContentLoaded', renderGiftGrid);
-</script>
-
-
-<style>
-    /* Conditional Formatting Legend */
-    #legend {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    #legend div {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .legend-box {
-        width: 20px;
-        height: 20px;
-        border: 1px solid #333;
-    }
-
-    .legend-box.pink {
-        background-color: #ffc0cb; /* Pink color */
-    }
-
-    .legend-box.white {
-        background-color: #fff; /* White color */
-    }
-
-    /* Gift Grid */
-    #gift-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Two items per row */
-        gap: 1rem;
-    }
-
-    .gift-item {
-        border: 2px solid white; /* Default border */
-        padding: 1rem;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: border 0.3s ease;
-    }
-
-    .gift-item img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 5px;
-        margin-bottom: 1rem;
-    }
-    .gift-item a {
-        display: inline-block;
-        margin-top: 0.5rem;
-        text-decoration: none;
-        color: #0b2e33;
-        font-family: 'Merriweather', serif;
-        font-size: 1rem;
-        font-weight: bold;
-        background: #f9f9f9;
-        padding: 0.5rem 1rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-    }
-
-    .gift-item a:hover {
-        background: #4f7c82;
-        color: white;
-        border-color: #4f7c82;
-    }
-    .gift-item.claimed {
-        border: 2px solid #ffc0cb; /* Pink border when claimed */
-    }
-    .button-group {
-        display: flex;
-        gap: 0.5rem;
-    }
-    .claim-button {
-        color: white;
-        background: #4f7c82;
-    }
-    .claim-button:hover {
-        background: #e0a894;
-    }
-    .cancel-button {
-        color: 4f7c82;
-        background: #E9BEB8; /* Red color for cancel button */
-    }
-
-    .cancel-button:hover {
-        background: #e0a894;
-    }
-</style>
+    
+        document.addEventListener('DOMContentLoaded', renderGiftGrid);
+    </script>
+</body>
 
 
