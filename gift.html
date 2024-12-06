@@ -19,11 +19,15 @@
         { id: 'gift1', name: 'Kitchen Mixer', link: 'https://www.amazon.com', img: 'https://via.placeholder.com/150' },
         { id: 'gift2', name: 'Home Decor', link: 'https://www.target.com', img: 'https://via.placeholder.com/150' },
         { id: 'gift3', name: 'Dining Set', link: 'https://www.wayfair.com', img: 'https://via.placeholder.com/150' },
-        // Add more gift objects here
     ];
 
     function renderGiftGrid() {
         const giftGrid = document.getElementById('gift-grid');
+        if (!giftGrid) {
+            console.error('Gift grid container not found!');
+            return;
+        }
+
         gifts.forEach(gift => {
             const giftItem = document.createElement('div');
             giftItem.className = 'gift-item';
@@ -49,6 +53,7 @@
 
             const claimButton = document.createElement('button');
             claimButton.textContent = 'Claim';
+            claimButton.className = 'claim-button';
             claimButton.onclick = () => confirmClaim(gift.id);
             buttonGroup.appendChild(claimButton);
 
@@ -89,6 +94,7 @@
 
     document.addEventListener('DOMContentLoaded', renderGiftGrid);
 </script>
+
 
 <style>
     /* Conditional Formatting Legend */
