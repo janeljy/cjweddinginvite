@@ -20,42 +20,41 @@
     </div>
 </body>
 
-<div id="thank-you-message" style="display: none; color: #4f7c82; font-weight: bold; margin-top: 1rem;">
+<div id="thankYouMessage" style="display: none; color: #4f7c82; font-weight: bold; margin-top: 1rem;">
     Thank you for your RSVP! We look forward to celebrating with you.
 </div>
 
 <script>
-    document.getElementById('rsvpForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form from submitting traditionally
-
-        // Capture form data
-        const name = document.getElementById('name').value;
-        const phone = document.getElementById('phone').value;
-        const plusOneName = document.getElementById('plusOneName').value;
-        const diet = document.getElementById('diet').value;
-
-        // Save to Google Forms
-        const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse";
-        const formData = new URLSearchParams();
-        formData.append("entry.1073488792", name);
-        formData.append("entry.229180976", phone);
-        formData.append("entry.1310270178", plusOneName);
-        formData.append("entry.670485444", diet);
-
-        fetch(googleFormURL, {
-            method: "POST",
-            mode: "cors",
-            body: formData
-        }).then(() => {
-            // Show thank you message
-            document.getElementById('thankYouMessage').style.display = 'block';
-            // Clear form
-            document.getElementById('rsvpForm').reset();
-        }).catch(error => {
-            alert("Error submitting the form. Please try again later.");
-            console.error(error);
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('rsvpForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting traditionally
+    
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const plusOneName = document.getElementById('plusOneName').value;
+            const diet = document.getElementById('diet').value;
+    
+            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse";
+            const formData = new URLSearchParams();
+            formData.append("entry.1073488792", name);
+            formData.append("entry.229180976", phone);
+            formData.append("entry.1310270178", plusOneName);
+            formData.append("entry.670485444", diet);
+    
+            fetch(googleFormURL, {
+                method: "POST",
+                mode: "cors",
+                body: formData
+            }).then(() => {
+                document.getElementById('thank-you-message').style.display = 'block';
+                document.getElementById('rsvpForm').reset();
+            }).catch(error => {
+                alert("Error submitting the form. Please try again later.");
+                console.error(error);
+            });
         });
     });
+
 </script>
 
 <style>
