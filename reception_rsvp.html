@@ -3,7 +3,7 @@
 <div id="rsvp-form">
     <form action="https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse" method="POST" target="_self">
         <label for="name">Name</label>
-        <input type="text" id="name" name="entry.1073488792" required>
+        <input type="text" id="name" name="entry.1073488792" required placeholder="Full Name">
 
         <label for="phone">Phone Number</label>
         <input type="tel" id="phone" name="entry.229180976">
@@ -12,11 +12,11 @@
         <select id="plus-one" name="entry.1301153858" onchange="togglePlusOneField()" required>
             <option value="No" selected>No</option>
             <option value="Yes">Yes</option>
-        </select>="Yes">Yes</option>
+        </select>
 
         <div id="plus-one-name-field">
-            <label for="plus-one-name">Your Plus One</label>
-            <input type="text" id="plus-one-name" name="entry.1310270178" placeholder="Name">
+            <label for="plus-one-name">Plus One's Name</label>
+            <input type="text" id="plus-one-name" name="plus-one-name">
         </div>
 
         <label for="diet">Dietary Restrictions</label>
@@ -28,13 +28,17 @@
 
 <script>
     function togglePlusOneField() {
-        const plusOneField = document.getElementById('plus-one-name-field');
-        const plusOneSelect = document.getElementById('plus-one');
+        const plusOneField = document.getElementById('plus-one-name'); // Input for Plus One's Name
+        const plusOneSelect = document.getElementById('plus-one'); // Dropdown
+    
+        // Enable or disable the Plus One's Name field based on the dropdown selection
         if (plusOneSelect.value === 'Yes') {
-            plusOneField.style.display = 'block';
+            plusOneField.disabled = false; // Enable the field
+            plusOneField.style.backgroundColor = 'white'; // Restore normal background
         } else {
-            plusOneField.style.display = 'none';
-            document.getElementById('plus-one-name').value = ''; // Clear the field
+            plusOneField.disabled = true; // Disable the field
+            plusOneField.style.backgroundColor = '#e9e9e9'; // Grey out the background
+            plusOneField.value = ''; // Clear the input when disabled
         }
     }
 
