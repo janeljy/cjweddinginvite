@@ -14,27 +14,35 @@
             font-family: 'Playfair Display', serif; /* Slim serif font */
             margin: 0;
             padding: 0;
-            background: url('https://raw.githubusercontent.com/janeljy/cjweddinginvite/main/xi.png') no-repeat center top; 
-            background-size: 200px 100px;
-            background-attachment: fixed;
             background-color: #ede6db;
             color: #c73d3a; /* Darkest color for text */
             text-align: center;
         }
-
-        @media (max-width: 1024px) { /* For tablets and smaller laptops */
-            body {
-                background-size: contain; /* Adjust logo size for smaller screens */
-                background-position: center top; /* Keep image at the top center */
-            }
-        }
-        @media (max-width: 768px) { /* For phones */
-            body {
-                background-size: 80%; /* Reduce the image size for smaller screens */
-                background-position: center top; /* Keep image at the top center */
-            }
+        /* Logo Section */
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            background-color: #ede6db;
         }
 
+        .logo-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                padding: 1rem;
+            }
+
+            .logo-image {
+                max-height: 200px;
+            }
+        }
+        
         h1, h2, h3 {
             font-family: 'Playfair Display', serif; /* Elegant headers */
             margin: 0;
@@ -193,6 +201,9 @@
 
 <!-- Welcome Page -->
 <div id="welcome">
+    <section class="logo-section">
+        <img src="https://raw.githubusercontent.com/janeljy/cjweddinginvite/main/xi.png" alt="Logo" class="logo-image">
+    </section>
     <h1>Charlie & Jieying</h1>
     <p>1.11.2025</p>
     <button onclick="showMainPage()">RSVP</button>
