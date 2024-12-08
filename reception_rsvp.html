@@ -26,15 +26,21 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById('rsvpForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form from submitting traditionally
+        const form = document.getElementById('rsvpForm');
+        console.log("Script loaded and form identified:", form);
+    
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            console.log("Submit button clicked, submission prevented.");
     
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const plusOneName = document.getElementById('plusOneName').value;
             const diet = document.getElementById('diet').value;
     
-            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse?pli=1";
+            console.log("Captured form data:", { name, phone, plusOneName, diet });
+    
+            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse";
             const formData = new URLSearchParams();
             formData.append("entry.1073488792", name);
             formData.append("entry.229180976", phone);
@@ -43,17 +49,18 @@
     
             fetch(googleFormURL, {
                 method: "POST",
-                mode: "cors",
+                mode: "no-cors",
                 body: formData
             }).then(() => {
+                console.log("Form submitted successfully.");
                 document.getElementById('thank-you-message').style.display = 'block';
-                document.getElementById('rsvpForm').reset();
+                form.reset();
             }).catch(error => {
-                alert("Error submitting the form. Please try again later.");
-                console.error(error);
+                console.error("Error during form submission:", error);
             });
         });
     });
+
 
 </script>
 
