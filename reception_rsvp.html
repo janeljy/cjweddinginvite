@@ -1,68 +1,56 @@
 <body>
     <h2>RSVP Confirmation</h2>
     
-    <div id="rsvp-form">
-        <form id="rsvpForm">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Full Name" autocomplete="name">
-    
-            <label for="phone">Contact</label>
-            <input type="tel" id="phone" name="phone" placeholder="Phone Number" autocomplete="tel">
+    <form id="rsvpForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Full Name" autocomplete="name">
 
-            <label for="plusOneName">Plus One's Name</label>
-            <input type="text" id="plusOneName" name="plusOneName" placeholder="NA if you're not bringing anyone" autocomplete="off">
+        <label for="phone">Contact</label>
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" autocomplete="tel">
+
+        <label for="plusOneName">Plus One's Name</label>
+        <input type="text" id="plusOneName" name="plusOneName" placeholder="NA if you're not bringing anyone" autocomplete="off">
+
+        <label for="diet">Dietary Restrictions</label>
+        <textarea id="diet" name="diet" rows="3" placeholder="Anything we can't feed you" autocomplete="off"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
     
-            <label for="diet">Dietary Restrictions</label>
-            <textarea id="diet" name="diet" rows="3" placeholder="Anything we can't feed you" autocomplete="off"></textarea>
-    
-            <button type="submit">Submit</button>
-        </form>
+    <div id="thank-you-message" style="display: none; color: #4f7c82; font-weight: bold; margin-top: 1rem;">
+        Thank you for your RSVP! We look forward to celebrating with you.
     </div>
-</body>
-
-<div id="thankYouMessage" style="display: none; color: #4f7c82; font-weight: bold; margin-top: 1rem;">
-    Thank you for your RSVP! We look forward to celebrating with you.
-</div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById('rsvpForm');
-        console.log("Script loaded and form identified:", form);
+    document.getElementById('rsvpForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
     
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            console.log("Submit button clicked, submission prevented.");
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const plusOneName = document.getElementById('plusOneName').value;
+        const diet = document.getElementById('diet').value;
+
+        const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse";
+        const formData = new URLSearchParams();
+        formData.append("entry.1073488792", name);
+        formData.append("entry.229180976", phone);
+        formData.append("entry.1310270178", plusOneName);
+        formData.append("entry.670485444", diet);
     
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const plusOneName = document.getElementById('plusOneName').value;
-            const diet = document.getElementById('diet').value;
-    
-            console.log("Captured form data:", { name, phone, plusOneName, diet });
-    
-            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse";
-            const formData = new URLSearchParams();
-            formData.append("entry.1073488792", name);
-            formData.append("entry.229180976", phone);
-            formData.append("entry.1310270178", plusOneName);
-            formData.append("entry.670485444", diet);
-    
-            fetch(googleFormURL, {
-                method: "POST",
-                mode: "no-cors",
-                body: formData
-            }).then(() => {
-                console.log("Form submitted successfully.");
-                document.getElementById('thank-you-message').style.display = 'block';
-                form.reset();
-            }).catch(error => {
-                console.error("Error during form submission:", error);
-            });
+        fetch(googleFormURL, {
+            method: "POST",
+            mode: "no-cors",
+            body: formData
+        }).then(() => {
+            document.getElementById('thank-you-message').style.display = 'block';
+            document.getElementById('rsvpForm').reset();
+        }).catch(error => {
+            alert("Error submitting the form. Please try again later.");
+            console.error("Submission error:", error);
         });
     });
-
-
 </script>
+</body>
 
 <style>
     #rsvp-form {
