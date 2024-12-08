@@ -1,7 +1,7 @@
 <body>
     <h2>RSVP Confirmation</h2>
     
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse" method="POST" target="_self">
+    <form id="rsvp-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfBAwWlPZYwJz9AKPpkA9og66e4MLY5XLpFTzHnShUtgAgGdA/formResponse" method="POST">
         <label for="name">Name</label>
         <input type="text" id="name" name="entry.1073488792" required placeholder="Full Name">
 
@@ -17,9 +17,32 @@
         <button type="submit">Submit</button>
     </form>
     
-    <div id="thank-you-message" style="display: none; color: #4f7c82; font-weight: bold; margin-top: 1rem;">
-        Thank you for your RSVP! We look forward to celebrating with you.
-    </div>
+    <div id="thank-you-message">Thank you for your RSVP! We look forward to celebrating with you.</div>
+
+    <script>
+        document.getElementById('rsvp-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const form = event.target;
+
+            // Gather form data
+            const formData = new FormData(form);
+
+            // Send the data using fetch
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Prevent CORS issues with Google Forms
+            }).then(() => {
+                // Display Thank You Message
+                document.getElementById('thank-you-message').style.display = 'block';
+                form.style.display = 'none'; // Hide the form after submission
+            }).catch((error) => {
+                console.error('Error:', error);
+                alert('There was an error submitting your RSVP. Please try again.');
+            });
+        });
+    </script>
+
 </body>
 
 <style>
