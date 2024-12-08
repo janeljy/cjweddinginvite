@@ -14,16 +14,24 @@
             font-family: 'Playfair Display', serif; /* Slim serif font */
             margin: 0;
             padding: 0;
-            background: url('https://raw.githubusercontent.com/janeljy/cjweddinginvite/main/xi.png') no-repeat center 20px; 
-            background-size: cover;
+            background: url('https://raw.githubusercontent.com/janeljy/cjweddinginvite/main/xi.png'); 
+            background-size: contain;
+            background-attachment: fixed;
             background-color: #ede6db;
             color: #c73d3a; /* Darkest color for text */
             text-align: center;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) { /* For tablets and smaller laptops */
             body {
-                background-size: 50%; /* Adjust logo size for smaller screens */
+                background-size: contain; /* Adjust logo size for smaller screens */
+                background-position: center top; /* Keep image at the top center */
+            }
+        }
+        @media (max-width: 768px) { /* For phones */
+            body {
+                background-size: 80%; /* Reduce the image size for smaller screens */
+                background-position: center top; /* Keep image at the top center */
             }
         }
 
