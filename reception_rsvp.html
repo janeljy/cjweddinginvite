@@ -4,16 +4,16 @@
     <div id="rsvp-form">
         <form id="rsvpForm">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Full Name">
+            <input type="text" id="name" name="name" required placeholder="Full Name" autocomplete="name">
     
             <label for="phone">Contact</label>
-            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number" autocomplete="tel">
 
             <label for="plusOneName">Plus One's Name</label>
-            <input type="text" id="plusOneName" name="plusOneName" placeholder="NA if you're not bringing anyone">
+            <input type="text" id="plusOneName" name="plusOneName" placeholder="NA if you're not bringing anyone" autocomplete="off">
     
             <label for="diet">Dietary Restrictions</label>
-            <textarea id="diet" name="diet" rows="3" placeholder="Anything we can't feed you"></textarea>
+            <textarea id="diet" name="diet" rows="3" placeholder="Anything we can't feed you" autocomplete="off"></textarea>
     
             <button type="submit">Submit</button>
         </form>
@@ -72,7 +72,7 @@
     }
     #thank-you-message {
         display: none; /* Hidden by default */
-        color: #4f7c82;
+        color: #c73d3a;
         font-size: 1.2rem;
         font-family: 'Playfair Display', serif;
         margin-top: 1rem;
@@ -84,36 +84,26 @@
         font-family: 'Playfair Display', serif;
         font-weight: bold;
     }
-    input, textarea, select, button {
+    input, textarea, button {
         width: 90%;
         padding: 0.5rem;
         margin-bottom: 1rem;
-        border: 1px solid #4f7c82;
+        border: 1px solid #c73d3a;
         font-family: 'Playfair Display', serif;
         font-size: 1rem;
-    }
-    select {
-        color: #4f7c82; /* Dropdown text color */
-        background: white; /* White background */
-        -webkit-appearance: none; /* For Safari */
-        -moz-appearance: none; /* For Firefox */
     }
     textarea {
         resize: vertical; /* Allow vertical resizing only */
     }
     button {
-        background: #4f7c82;
+        background: #c73d3a;
         color: white;
         cursor: pointer;
         border: none;
         transition: background 0.3s ease, border-color 0.3s ease;
     }
     button:hover {
-        background: #0b2e33;
+        background: #ffa896;
     }
-
-    input[disabled] {
-        background-color: #e9e9e9; /* Grey out the input when disabled */
-        cursor: not-allowed;
     }
 </style>
