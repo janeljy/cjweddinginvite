@@ -3,166 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registry</title>
+    <title>Wish List</title>
     <style>
-        /* Conditional Formatting Legend */
-        h1, p {
-            text-align: center;
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 20px;
         }
-
         .legend {
-            text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
-
-        .legend span {
-            display: inline-block;
-            margin: 0 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-
-        .legend .available {
-            border: 1px solid white;
-            background-color: #ffffff;
-            color: #4CAF50;
-        }
-
-        .legend .claimed {
-            border: 1px solid pink;
-            background-color: #ffe6e6;
-            color: #c73d3a;
-        }
-
-        .gift-container {
+        .wishlist-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
+            gap: 20px;
         }
-
-        .gift-box {
-            width: 300px;
+        .wishlist-item {
             border: 2px solid white;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 1rem;
-            background-color: white;
+            padding: 10px;
+            width: calc(50% - 20px);
+            box-sizing: border-box;
             text-align: center;
-            position: relative;
+            transition: border-color 0.3s;
         }
-
-        .gift-box img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
+        .wishlist-item.claimed {
+            border-color: pink;
         }
-
-        .gift-box button {
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background-color: #4CAF50;
-            color: white;
+        .wishlist-item button {
+            margin: 5px;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-
-        .gift-box button:hover {
-            background-color: #45a049;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 192, 203, 0.5);
-            border: 2px solid pink;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: #c73d3a;
-            font-weight: bold;
-            display: none;
+        .wishlist-item button:hover {
+            background-color: #ede6db;
         }
     </style>
 </head>
-
-    
 <body>
-    <div>
-        <hr>
-        <section class="logo-section">
-            <img src="https://raw.githubusercontent.com/janeljy/cjweddinginvite/main/xi.PNG" alt="Logo" class="logo-image">
-        </section>
-        <hr>
-    </div>
-    
-    <h2>Gift Registry</h2>
-    <p> Give Jane some time to finalize this page. Thank you so much for your kindness and generosity! Stay tuned for updates</p>
-
-    <!-- Legend -->
     <div class="legend">
-        <span class="available">Available</span>
-        <span class="claimed">Claimed</span>
+        <h2>Wish List</h2>
+        <p>Give Jane some time to finalize this page. Thank you everyone!</p>
     </div>
-    
-    <!-- Gift Boxes -->
-    <div class="gift-container" id="gift-container">
-        <!-- Gift boxes will be generated here -->
-    </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const gifts = [
-                { name: "Example 1", link: "https://aeptom.com/collections/bundles/products/premium-bamboo-essential-bedding-set?variant=44867467870438", img: "https://aeptom.com/cdn/shop/files/SCS_0263_d44cda92-fda5-4a6e-b9ea-4a875f23fba6_720x.jpg?v=1716465781", claimed: false },
-                { name: "Example 2", link: "https://example.com/blender", img: "https://via.placeholder.com/300x150", claimed: false }
-            ];
-    
-            const container = document.getElementById('gift-container');
-            console.log(container); // Debug container
-            console.log(gifts); // Debug gifts array
 
-            gifts.forEach((gift, index) => {
-                console.log(`Rendering gift: ${gift.name}`);
-                const box = document.createElement('div');
-                box.classList.add('gift-box');
-                box.innerHTML = `
-                    <img src="${gift.img}" alt="${gift.name}">
-                    <h3>${gift.name}</h3>
-                    <a href="${gift.link}" target="_blank">View Gift</a>
-                    <button onclick="claimGift(${index})">Claim Gift</button>
-                    <div class="overlay" id="overlay-${index}">
-                        Claimed!
-                    </div>
-                `;
-                container.appendChild(box);
-            });
-    
-            window.claimGift = (index) => {
-                if (!gifts[index].claimed) {
-                    const nickname = prompt("Enter a nickname or message. Surprise us!");
-                    if (nickname) {
-                        gifts[index].claimed = true;
-                        const overlay = document.getElementById(`overlay-${index}`);
-                        overlay.style.display = 'flex';
-                        const button = overlay.previousElementSibling;
-                        button.disabled = true;
-                        button.style.cursor = 'not-allowed';
-                    }
-                } else {
-                    alert("This gift has already been claimed!");
+    <div class="wishlist-container">
+        <!-- Item 1 -->
+        <div class="wishlist-item" id="item1">
+            <h3>Item 1: Bedding Bundle</h3>
+            <button onclick="viewDetail('https://aeptom.com/collections/bundles/products/premium-bamboo-essential-bedding-set?variant=44867467870438')">View Detail</button>
+            <button onclick="claimItem('item1')">Claim</button>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="wishlist-item" id="item2">
+            <h3>Item 2: Cozy Blanket</h3>
+            <button onclick="viewDetail('https://example.com/cozy-blanket')">View Detail</button>
+            <button onclick="claimItem('item2')">Claim</button>
+        </div>
+
+        <!-- Add more items as needed -->
+    </div>
+
+    <script>
+        function viewDetail(url) {
+            window.open(url, '_blank');
+        }
+
+        function claimItem(itemId) {
+            const item = document.getElementById(itemId);
+            if (!item.classList.contains('claimed')) {
+                const name = prompt('Enter your name or a message to claim this item:');
+                if (name) {
+                    alert(`Thank you, ${name}! This item is now claimed.`);
+                    item.classList.add('claimed');
                 }
-            };
-            
-        });
+            } else {
+                alert('This item has already been claimed.');
+            }
+        }
     </script>
 </body>
 </html>
-
