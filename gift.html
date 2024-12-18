@@ -3,104 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registry Page</title>
+    <title>Registry</title>
     <style>
         /* Conditional Formatting Legend */
-        #legend {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+        h1, p {
+            text-align: center;
         }
-    
-        #legend div {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-    
-        .legend-box {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #333;
-        }
-    
-        .legend-box.pink {
-            background-color: #ffc0cb; /* Pink color */
-        }
-    
-        .legend-box.white {
-            background-color: #fff; /* White color */
-        }
-    
-        /* Gift Grid */
-        #gift-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Flexible grid layout */
-            gap: 1rem; /* Space between cards */
-            padding: 1rem; /* Optional: Add padding around the grid */
-        }
-    
-        .gift-item {
-            border: 2px solid white; /* Default border */
-            padding: 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: border 0.3s ease;
-        }
-    
-        .gift-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
+
+        .legend {
+            text-align: center;
             margin-bottom: 1rem;
         }
-        .gift-item a {
+
+        .legend span {
             display: inline-block;
-            margin-top: 0.5rem;
-            text-decoration: none;
-            color: #0b2e33;
-            font-family: 'Merriweather', serif;
-            font-size: 1rem;
-            font-weight: bold;
-            background: #f9f9f9;
+            margin: 0 1rem;
             padding: 0.5rem 1rem;
-            border: 1px solid #ccc;
             border-radius: 5px;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
-    
-        .gift-item a:hover {
-            background: #4f7c82;
-            color: white;
-            border-color: #4f7c82;
+
+        .legend .available {
+            border: 1px solid white;
+            background-color: #ffffff;
+            color: #4CAF50;
         }
-        .gift-item.claimed {
-            border: 2px solid #ffc0cb; /* Pink border when claimed */
+
+        .legend .claimed {
+            border: 1px solid pink;
+            background-color: #ffe6e6;
+            color: #c73d3a;
         }
-        .button-group {
+
+        .gift-container {
             display: flex;
-            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
         }
-        .claim-button {
+
+        .gift-box {
+            width: 300px;
+            border: 2px solid white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .gift-box img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .gift-box button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;
             color: white;
-            background: #4f7c82;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        .claim-button:hover {
-            background: #e0a894;
+
+        .gift-box button:hover {
+            background-color: #45a049;
         }
-        .cancel-button {
-            color: 4f7c82;
-            background: #E9BEB8; /* Red color for cancel button */
-        }
-    
-        .cancel-button:hover {
-            background: #e0a894;
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 192, 203, 0.5);
+            border: 2px solid pink;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #c73d3a;
+            font-weight: bold;
+            display: none;
         }
     </style>
 </head>
@@ -115,18 +104,61 @@
         <hr>
     </div>
     
-    <h2>Wish List</h2>
-    
-    <div id="legend">
-        <div><div class="legend-box white"></div> Available to Claim</div>
-        <div><div class="legend-box pink"></div> Gift Claimed</div>
+    <h2>Gift Registry</h2>
+    <p> Give Jane some time to finalize this page. Thank you so much for your kindness and generosity! Stay tuned for updates</p>
+
+    <!-- Legend -->
+    <div class="legend">
+        <span class="available">Available</span>
+        <span class="claimed">Claimed</span>
     </div>
-    <u> Give Jane some time to finalize this page. Thank you so much for your kindness and generosity! Stay tuned for updates</u>
     
-    <!-- Gift Grid -->
-    <div id="gift-grid"></div>
+    <!-- Gift Boxes -->
+    <div class="gift-container" id="gift-container">
+        <!-- Gift boxes will be generated here -->
+    </div>
     
     <script>
+        // List of gifts
+        const gifts = [
+            { name: "Example 1", link: "https://example.com/coffee-maker", img: "https://via.placeholder.com/300x150", claimed: false },
+            { name: "Example 2", link: "https://example.com/blender", img: "https://via.placeholder.com/300x150", claimed: false }
+        ];
+
+        const container = document.getElementById('gift-container');
+
+        // Render gifts
+        gifts.forEach((gift, index) => {
+            const box = document.createElement('div');
+            box.classList.add('gift-box');
+            box.innerHTML = `
+                <img src="${gift.img}" alt="${gift.name}">
+                <h3>${gift.name}</h3>
+                <a href="${gift.link}" target="_blank">View Gift</a>
+                <button onclick="claimGift(${index})">Claim Gift</button>
+                <div class="overlay" id="overlay-${index}">
+                    Claimed!
+                </div>
+            `;
+            container.appendChild(box);
+        });
+
+        // Claim gift function
+        function claimGift(index) {
+            if (!gifts[index].claimed) {
+                const nickname = prompt("Enter your nickname or message:");
+                if (nickname) {
+                    gifts[index].claimed = true;
+                    const overlay = document.getElementById(`overlay-${index}`);
+                    overlay.style.display = 'flex';
+                    const button = overlay.previousElementSibling;
+                    button.disabled = true;
+                    button.style.cursor = 'not-allowed';
+                }
+            } else {
+                alert("This gift has already been claimed!");
+            }
+        }
     </script>
 </body>
 
