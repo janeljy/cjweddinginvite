@@ -16,6 +16,23 @@
             border-radius: 8px;
             background-color: #f9f9f9;
         }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid;
+            margin-right: 10px;
+        }
+        .legend-box.unclaimed {
+            border-color: white;
+        }
+        .legend-box.claimed {
+            border-color: pink;
+        }
         .wishlist-container {
             display: flex;
             flex-wrap: wrap;
@@ -33,17 +50,12 @@
         .wishlist-item.claimed {
             border-color: pink;
         }
-        .wishlist-item button {
-            margin: 5px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
         .wishlist-item button:hover {
             background-color: #ede6db;
         }
         button {
+            margin: 5px;
+            padding: 10px;
             background: none;
             cursor: pointer;
             border: #c73d3a;
@@ -57,6 +69,14 @@
     <div class="legend">
         <h2>Wish List</h2>
         <p>Give Jane some time to finalize this page. Thank you everyone!</p>
+        <div class="legend-item">
+            <div class="legend-box unclaimed"></div>
+            <span>Unclaimed item</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box claimed"></div>
+            <span>Claimed item</span>
+        </div>
     </div>
 
     <div class="wishlist-container">
