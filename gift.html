@@ -119,46 +119,49 @@
     </div>
     
     <script>
-        // List of gifts
-        const gifts = [
-            { name: "Example 1", link: "https://example.com/coffee-maker", img: "https://via.placeholder.com/300x150", claimed: false },
-            { name: "Example 2", link: "https://example.com/blender", img: "https://via.placeholder.com/300x150", claimed: false }
-        ];
+        document.addEventListener('DOMContentLoaded', () => {
+            const gifts = [
+                { name: "Example 1", link: "https://aeptom.com/collections/bundles/products/premium-bamboo-essential-bedding-set?variant=44867467870438", img: "https://aeptom.com/cdn/shop/files/SCS_0263_d44cda92-fda5-4a6e-b9ea-4a875f23fba6_720x.jpg?v=1716465781", claimed: false },
+                { name: "Example 2", link: "https://example.com/blender", img: "https://via.placeholder.com/300x150", claimed: false }
+            ];
+    
+            const container = document.getElementById('gift-container');
+            console.log(container); // Debug container
+            console.log(gifts); // Debug gifts array
 
-        const container = document.getElementById('gift-container');
-
-        // Render gifts
-        gifts.forEach((gift, index) => {
-            const box = document.createElement('div');
-            box.classList.add('gift-box');
-            box.innerHTML = `
-                <img src="${gift.img}" alt="${gift.name}">
-                <h3>${gift.name}</h3>
-                <a href="${gift.link}" target="_blank">View Gift</a>
-                <button onclick="claimGift(${index})">Claim Gift</button>
-                <div class="overlay" id="overlay-${index}">
-                    Claimed!
-                </div>
-            `;
-            container.appendChild(box);
-        });
-
-        // Claim gift function
-        function claimGift(index) {
-            if (!gifts[index].claimed) {
-                const nickname = prompt("Enter a nickname or message. Surprise us!");
-                if (nickname) {
-                    gifts[index].claimed = true;
-                    const overlay = document.getElementById(`overlay-${index}`);
-                    overlay.style.display = 'flex';
-                    const button = overlay.previousElementSibling;
-                    button.disabled = true;
-                    button.style.cursor = 'not-allowed';
+            gifts.forEach((gift, index) => {
+                console.log(`Rendering gift: ${gift.name}`);
+                const box = document.createElement('div');
+                box.classList.add('gift-box');
+                box.innerHTML = `
+                    <img src="${gift.img}" alt="${gift.name}">
+                    <h3>${gift.name}</h3>
+                    <a href="${gift.link}" target="_blank">View Gift</a>
+                    <button onclick="claimGift(${index})">Claim Gift</button>
+                    <div class="overlay" id="overlay-${index}">
+                        Claimed!
+                    </div>
+                `;
+                container.appendChild(box);
+            });
+    
+            window.claimGift = (index) => {
+                if (!gifts[index].claimed) {
+                    const nickname = prompt("Enter a nickname or message. Surprise us!");
+                    if (nickname) {
+                        gifts[index].claimed = true;
+                        const overlay = document.getElementById(`overlay-${index}`);
+                        overlay.style.display = 'flex';
+                        const button = overlay.previousElementSibling;
+                        button.disabled = true;
+                        button.style.cursor = 'not-allowed';
+                    }
+                } else {
+                    alert("This gift has already been claimed!");
                 }
-            } else {
-                alert("This gift has already been claimed!");
-            }
-        }
+            };
+            
+        });
     </script>
 </body>
 </html>
