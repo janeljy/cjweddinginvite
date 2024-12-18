@@ -121,96 +121,12 @@
         <div><div class="legend-box white"></div> Available to Claim</div>
         <div><div class="legend-box pink"></div> Gift Claimed</div>
     </div>
+    <u> Give Jane some time to finalize this page. Thank you so much for your kindness and generosity! Stay tuned for updates</u>
     
     <!-- Gift Grid -->
     <div id="gift-grid"></div>
     
     <script>
-        const gifts = [
-            { id: 'gift1', name: 'Kitchen Mixer', link: 'https://www.amazon.com'},
-            { id: 'gift2', name: 'Home Decor', link: 'https://www.target.com'},
-            { id: 'gift3', name: 'Dining Set', link: 'https://www.wayfair.com'},
-        ];
-    
-        function renderGiftGrid() {
-            const giftGrid = document.getElementById('gift-grid');
-            if (!giftGrid) {
-                console.error('Gift grid container not found!');
-                return;
-            }
-        
-            gifts.forEach(gift => {
-                console.log(`Rendering gift: ${gift.name}`); // Debugging log
-        
-                const giftItem = document.createElement('div');
-                giftItem.className = 'gift-item';
-                giftItem.id = gift.id;
-        
-                // Add image
-                const img = document.createElement('img');
-                img.src = gift.img;
-                img.alt = gift.name;
-                giftItem.appendChild(img);
-        
-                // Add name
-                const name = document.createElement('p');
-                name.textContent = gift.name;
-                giftItem.appendChild(name);
-        
-                // Add link
-                const link = document.createElement('a');
-                link.href = gift.link;
-                link.target = '_blank';
-                link.textContent = 'View Item';
-                giftItem.appendChild(link);
-        
-                // Add buttons
-                const buttonGroup = document.createElement('div');
-                buttonGroup.className = 'button-group';
-        
-                const claimButton = document.createElement('button');
-                claimButton.textContent = 'Claim';
-                claimButton.className = 'claim-button';
-                claimButton.onclick = () => confirmClaim(gift.id);
-                buttonGroup.appendChild(claimButton);
-        
-                const cancelButton = document.createElement('button');
-                cancelButton.textContent = 'Cancel';
-                cancelButton.className = 'cancel-button';
-                cancelButton.onclick = () => confirmCancel(gift.id);
-                buttonGroup.appendChild(cancelButton);
-        
-                giftItem.appendChild(buttonGroup);
-                giftGrid.appendChild(giftItem);
-            });
-        }
-    
-    
-        function confirmClaim(itemId) {
-            const item = document.getElementById(itemId);
-            if (item) {
-                const giftName = item.querySelector('p').textContent;
-                const confirmed = confirm(`Are you sure you want to claim "${giftName}"?`);
-                if (confirmed) {
-                    item.classList.add('claimed');
-                    alert(`Thank you! "${giftName}" has been claimed.`);
-                }
-            }
-        }
-    
-        function confirmCancel(itemId) {
-            const item = document.getElementById(itemId);
-            if (item) {
-                const giftName = item.querySelector('p').textContent;
-                const confirmed = confirm(`Are you sure you want to put "${giftName}" back on the list?`);
-                if (confirmed) {
-                    item.classList.remove('claimed');
-                    alert(`"${giftName}" is now available to be claimed.`);
-                }
-            }
-        }
-    
-        document.addEventListener('DOMContentLoaded', renderGiftGrid);
     </script>
 </body>
 
