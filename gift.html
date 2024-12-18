@@ -146,7 +146,7 @@
         // Claim gift function
         function claimGift(index) {
             if (!gifts[index].claimed) {
-                const nickname = prompt("Enter your nickname or message:");
+                const nickname = prompt("Enter a nickname or message. Surprise us!");
                 if (nickname) {
                     gifts[index].claimed = true;
                     const overlay = document.getElementById(`overlay-${index}`);
