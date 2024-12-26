@@ -16,14 +16,14 @@
             width: 80%;
             max-width: 400px;
         }
-        #redirect-btn {
+        #redirect-link {
             padding: 10px 20px;
             font-size: 16px;
             border: none;
-            cursor: pointer;
+            text-align: center;
         }
 
-        #redirect-btn:hover {
+        #redirect-link:hover {
             background-color: #e8b1b0;
         }
     </style>
@@ -43,7 +43,7 @@
         <li>Items can be purchased directly through this website, and the list will update automatically. </li>
     </ul>
 
-    <button id="redirect-btn">Go to Registry</button>
+    <a href="https://withjoy.com/kieltliu/registry" class="redirect-link" target="_blank">Go to Registry</a>
     
     <ul>
         <li>If you’d like to send something our way, please ship it to </li>
@@ -53,12 +53,6 @@
         7 Summit Street, Boston, MA 02136
     </div>
     <p>Thank you for your kindness and thoughtfulness—we can’t wait to celebrate with you!</p>
-
-    <script>
-        document.getElementById('redirect-btn').addEventListener('click', function() {
-            window.location.href = 'https://withjoy.com/kieltliu/registry';
-        });
-    </script>
     
 </body>
 </html>
