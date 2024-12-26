@@ -12,6 +12,16 @@
             width: 80%;
             max-width: 400px;
         }
+        #redirect-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #redirect-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
@@ -20,20 +30,31 @@
         <img src="https://raw.githubusercontent.com/janeljy/cjweddinginvite/main/xi.PNG" alt="Logo" class="logo-image">
     </section>
     
-    <br><hr>
+    <hr><br>
     <h2>Registry</h2>
     <br><hr><br>
-    <p>
+    <ul>
         <li>Your presence at our wedding is the greatest gift we could ask for!</li>
         <li>For those of you who insist on going the extra mile, we’ve put together a little wish list of things we love and need. Feel free to use it as a reference. </li>
         <li>Items can be purchased directly through this website, and the list will update automatically. </li>
+    </ul>
+
+    <button id="redirect-btn">Go to Registry</button>
+    
+    <ul>
         <li>If you’d like to send something our way, please ship it to </li>
-    </p>
+    </ul>
 
     <div class="text-container">
         7 Summit Street, Boston, MA 02136
     </div>
     <p>Thank you for your kindness and thoughtfulness—we can’t wait to celebrate with you!</p>
 
+    <script>
+        document.getElementById('redirect-btn').addEventListener('click', function() {
+            window.location.href = 'https://withjoy.com/kieltliu/registry';
+        });
+    </script>
+    
 </body>
 </html>
