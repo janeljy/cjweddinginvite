@@ -4,32 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Container</title>
-    <style>
-        body {
-            font-family: 'Playfair Display', serif;
-            color: #4e1716; 
-        }
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px; /* Set maximum width for the video */
-            margin: 20px auto; /* Center the container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
-            overflow: hidden; /* Ensure the video fits inside the container */
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 450px; /* Default height */
-            border: none; /* Remove iframe border */
-        }
-
-        @media (max-width: 768px) {
-            .video-container iframe {
-                height: 300px; /* Adjust height for smaller screens */
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -41,7 +15,7 @@
     <h2>Album</h2>
     <br><hr><br>
     
-    <ul>
+    <ul style="color: #6c201f;">
         <li>We will be handing out ~10 Fuji Quicksnap disposable cameras at the event, and we need your help capturing all the happy and goofy moments we might miss. </li>
         <li>So, pick one up and snap away! Help us fill our wedding album with moments through your eyes - thank you for being part of our big day!</li>
         <li>We will develop the photos and post them here. Don't forget to check back in a week or so to relive the moments :)</li>
@@ -49,21 +23,14 @@
     </ul>
 
     <h3 style="text-align: center;">Tutorial and Tips</h3>
-    <ul>
-        <li>Never used a disposable camera? Watch the video below to get started. </li>
+    <ul style="color: #6c201f;">
+        <li>Never used a disposable camera? Watch this video to get started - </li>
+        <a href="https://www.wikihow.com/Use-a-Fujifilm-Disposable-Camera#:~:text=To%20take%20a%20photo%2C%20turn,camera%20to%20shoot%20your%20photo" class="redirect-link" target="_blank">tutorial</a>
         <li>** Always always turn on the flash!</li>
         <li>** Don't cover the lens or flash with your fingers!</li>
         <li>** Wind the film before each shot</li>
         <li>** Aim and Shoot! Proper distance is ~2 arms away from your target</li>
     </ul>
-    <div class="video-container">
-        <iframe
-            src="https://www.wikihow.com/Use-a-Fujifilm-Disposable-Camera#:~:text=To%20take%20a%20photo%2C%20turn,camera%20to%20shoot%20your%20photo"
-            title="How to Use a Fujifilm Disposable Camera"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
 
 </body>
 </html>
