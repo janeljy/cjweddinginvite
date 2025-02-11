@@ -205,20 +205,20 @@
     </section>
     <h1>Charlie & Jieying</h1>
     <p>1.11.2025</p>
-    <button onclick="showMainPage()">RSVP</button>
+    <button onclick="showMainPage()">View the Wedding Album</button>
 </div>
 
 <!-- Main Page -->
 <div id="main-page">
     <a class="return-button" href="#" onclick="returnToWelcome()">back</a><br>
     <nav>
-        <button class="active" onclick="showTab('reception-tab')">Reception</button>
-        <button onclick="showTab('album-tab')">Album</button>
+        <button onclick="showTab('reception-tab')">Reception</button>
+        <button class="active" onclick="showTab('album-tab')">Album</button>
         <button onclick="showTab('gift-tab')">Registry</button>
     </nav>
 
-    <div id="reception-tab" class="tab-content active"></div>
-    <div id="album-tab" class="tab-content"></div>
+    <div id="reception-tab" class="tab-content"></div>
+    <div id="album-tab" class="tab-content active"></div>
     <div id="gift-tab" class="tab-content"></div>
 </div>
 
@@ -283,7 +283,7 @@
     }
     
     document.addEventListener('DOMContentLoaded', () => {
-        loadTabContent('reception-tab', 'reception.html');
+        loadTabContent('album-tab', 'album.html');
     });
 </script>
 
